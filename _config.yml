@@ -11,7 +11,7 @@ avatar: /images/editor-portrait.jpg
 # 导航菜单
 menu:
   首页: /
-  散文随笔: /tags/随笔
+  # 散文随笔: /tags/随笔
   关于本刊: /about
 
 # 侧边栏

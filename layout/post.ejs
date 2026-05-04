@@ -8,13 +8,13 @@
     </div>
     <div class="margin-widget">
       <p class="margin-note">出版日期</p>
-      <p class="margin-note-em"><%= date(page.date, theme.date_format || config.date_format || 'YYYY年M月D日') %> <%= time(page.date, theme.time_format || config.time_format || 'HH:mm:ss') %></p>
+      <p class="margin-note-em"><%= date(page.date, theme.date_format || config.date_format || 'YYYY年M月D日') %></p>
     </div>
     <!-- 最后编辑日期：仅当文章修改过且与发布日期不同时显示 -->
     <% if (page.updated && page.updated !== page.date) { %>
     <div class="margin-widget">
       <p class="margin-note">最后修订</p>
-      <p class="margin-note-em"><%= date(page.updated, theme.date_format || config.date_format || 'YYYY年M月D日') %> <%= time(page.updated, theme.time_format || config.time_format || 'HH:mm:ss') %></p>
+      <p class="margin-note-em"><%= date(page.updated, theme.date_format || config.date_format || 'YYYY年M月D日') %></p>
     </div>
     <% } %>
     <% if (page.categories && page.categories.length) { %>
