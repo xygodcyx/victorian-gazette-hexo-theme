@@ -1,0 +1,17 @@
+<% if (theme.comment && theme.comment.enable) { %>
+<section class="comments-section">
+  <h3 class="comments-heading">读者来信</h3>
+
+  <!-- 评论表单 -->
+  <div class="comment-form">
+    <h4 class="comment-form-title">✎ 投递您的来信</h4>
+    <div class="form-row">
+      <input type="text" placeholder="您的名讳" class="form-input" />
+      <input type="text" placeholder="电子邮箱（不会公开）" class="form-input" />
+    </div>
+    <textarea placeholder="在此书写您的想法……" class="form-textarea" rows="5"></textarea>
+    <button type="button" class="form-button">投递信件</button>
+    <span class="form-note">* 来信需经编辑审核后登载</span>
+  </div>
+</section>
+<% } %>

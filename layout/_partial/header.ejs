@@ -1,0 +1,23 @@
+<!-- 报头 -->
+<header class="masthead">
+  <h1 class="newspaper-title">
+    <a href="<%= url_for('/') %>" style="color: inherit; text-decoration: none;">
+      <%= config.title %>
+    </a>
+  </h1>
+  <div class="date-line">
+    ◆ 伦敦 · <%= date(Date.now(), config.date_format || 'YYYY年M月D日') %> ◆ 每日号外
+  </div>
+</header>
+
+<!-- 导航 -->
+<nav class="nav-section">
+  <ul class="nav-list">
+    <% for (var link in theme.menu) { %>
+      <li>
+        <a href="<%= url_for(theme.menu[link]) %>"><%= link %></a>
+      </li>
+    <% } %>
+    <li><a href="<%= url_for('/archives') %>">档案室</a></li>
+  </ul>
+</nav>

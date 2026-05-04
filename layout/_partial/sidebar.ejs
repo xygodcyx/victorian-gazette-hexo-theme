@@ -1,0 +1,62 @@
+<aside class="sidebar">
+
+  <!-- 编辑肖像 -->
+  <div class="widget">
+    <h3 class="widget-title">本刊编辑</h3>
+    <figure style="margin: 0 0 0.8rem 0; text-align: center;">
+      <img
+        src="<%= url_for(theme.avatar || '/images/editor-portrait.jpg') %>"
+        alt="<%= config.author %>"
+        style="border: 2px solid var(--border-ornate); border-radius: 50%; width: 100px; height: 100px; object-fit: cover;"
+      />
+    </figure>
+    <p class="widget-text"><%= theme.sidebar.bio %></p>
+  </div>
+
+  <!-- 分类目录 -->
+  <div class="widget">
+    <h3 class="widget-title">分类目录</h3>
+    <ul class="widget-list">
+      <% site.categories.sort('name').each(function(cat) { %>
+        <li>
+          <a href="<%= url_for(cat.path) %>">
+            <%= cat.name %> (<%= cat.posts.length %>)
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <!-- 标签云 -->
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="tag-cloud">
+      <% site.tags.sort('name').each(function(tag) { %>
+        <a href="<%= url_for(tag.path) %>" class="tag"><%= tag.name %></a>
+      <% }); %>
+    </div>
+  </div>
+
+  <!-- 装饰徽章 -->
+  <div class="widget" style="text-align: center">
+    <img
+      src="<%= url_for('/images/badge.png') %>"
+      alt="装饰徽章"
+      style="max-width: 120px; height: auto; margin: 0.5rem 0;"
+    />
+    <p class="widget-text" style="font-size: 0.8rem; color: var(--text-secondary);">
+      ✦ <%= theme.sidebar.badge_text %> ✦
+    </p>
+  </div>
+
+  <!-- 友刊 -->
+  <div class="widget">
+    <h3 class="widget-title">友刊</h3>
+    <ul class="widget-list">
+      <% for (var name in theme.links) { %>
+        <li><a href="<%= theme.links[name] %>"><%= name %></a></li>
+      <% } %>
+    </ul>
+  </div>
+
+</aside>

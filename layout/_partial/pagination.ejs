@@ -1,0 +1,19 @@
+<% if (page.total > 1) { %>
+  <div class="pagination">
+    <% if (page.prev) { %>
+      <a href="<%= url_for(page.prev_link) %>">← 前页</a>
+    <% } %>
+
+    <% for (var i = 1; i <= page.total; i++) { %>
+      <% if (i === page.current) { %>
+        <span class="current"><%= i %></span>
+      <% } else { %>
+        <a href="<%= url_for(i === 1 ? '/' : '/page/' + i) %>"><%= i %></a>
+      <% } %>
+    <% } %>
+
+    <% if (page.next) { %>
+      <a href="<%= url_for(page.next_link) %>">后页 →</a>
+    <% } %>
+  </div>
+<% } %>

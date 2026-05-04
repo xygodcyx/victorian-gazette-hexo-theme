@@ -1,0 +1,75 @@
+<!--
+  首页布局：
+  - 第 1 篇作为头条文章，完整展示
+  - 第 2~6 篇作为小文章列表
+-->
+
+<% var posts = page.posts.toArray(); %>
+
+<!-- 头条文章 -->
+<% if (posts.length > 0) { %>
+  <% var featured = posts[0]; %>
+  <section class="featured-story">
+    <div class="featured-label">✦ 今日头条 ✦</div>
+    <h2 class="featured-title">
+      <a href="<%= url_for(featured.path) %>"><%= featured.title %></a>
+    </h2>
+    <div class="featured-meta">
+      发布于 <%= date(featured.date, config.date_format || 'YYYY年M月D日') %>
+      <% if (featured.categories && featured.categories.length) { %>
+        · 栏目：
+        <% featured.categories.each(function(cat) { %>
+          <a href="<%= url_for(cat.path) %>"><%= cat.name %></a>
+        <% }); %>
+      <% } %>
+      <% if (featured.comments !== undefined) { %>
+        · 读者来信：<%= featured.comments %>封
+      <% } %>
+    </div>
+    <div class="featured-body">
+      <!-- 如果有特色图片 -->
+      <% if (featured.thumbnail || featured.banner) { %>
+        <figure class="featured-image">
+          <img src="<%= featured.thumbnail || featured.banner %>" alt="<%= featured.title %>" />
+        </figure>
+      <% } %>
+      <%- featured.excerpt || truncate(strip_html(featured.content), {length: 400}) %>
+    </div>
+    <a href="<%= url_for(featured.path) %>" class="featured-read-more">继续阅读全文 →</a>
+  </section>
+<% } %>
+
+<!-- 下方：小文章列表 + 侧边栏 -->
+<div class="content-grid">
+  <main class="story-list">
+    <h3 class="list-heading">更多文章</h3>
+
+    <% for (var i = 1; i < Math.min(posts.length, 6); i++) { %>
+      <% var post = posts[i]; %>
+      <article class="story-card">
+        <h2 class="story-card-title">
+          <a href="<%= url_for(post.path) %>"><%= post.title %></a>
+        </h2>
+        <div class="story-card-meta">
+          <%= date(post.date, 'YYYY年M月D日') %>
+          <% if (post.categories && post.categories.length) { %>
+            · <% post.categories.each(function(cat) { %>
+              <%= cat.name %>
+            <% }); %>
+          <% } %>
+          <% if (post.comments !== undefined) { %>
+            · <%= post.comments %>封来信
+          <% } %>
+        </div>
+        <p class="story-card-excerpt">
+          <%- post.excerpt || truncate(strip_html(post.content), {length: 120}) %>
+        </p>
+        <a href="<%= url_for(post.path) %>" class="card-read-more">继续阅读 →</a>
+      </article>
+    <% } %>
+
+    <%- partial('_partial/pagination') %>
+  </main>
+
+  <%- partial('_partial/sidebar') %>
+</div>

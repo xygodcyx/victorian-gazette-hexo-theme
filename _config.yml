@@ -1,0 +1,46 @@
+# Victorian Gazette Theme Config
+
+# 博客名称
+title: Porthole
+subtitle: 潜入数字深渊 · 追寻千禧遗光
+description: 维多利亚号外 · 复古日志
+
+# 博主信息
+author: Lyorn
+avatar: /images/editor-portrait.jpg
+
+# 导航菜单
+menu:
+  首页: /
+  散文随笔: /categories/散文随笔
+  技术考古: /categories/技术考古
+  影像笔记: /categories/影像笔记
+  藏书阁: /categories/阅读札记
+  关于本刊: /about
+
+# 侧边栏
+sidebar:
+  bio: 千禧年幸存者 · 数字考古学家 · 在泛黄纸页间寻找被遗忘的故事。
+  badge_text: 烛光排版认证
+
+# 友链
+links:
+  老猫的静默花园: https://example.com
+  CD旋转岁月: https://example.com
+  泛黄纸页: https://example.com
+
+# 首页设置
+index:
+  featured_count: 1 # 头条文章数
+  list_count: 5 # 小文章数
+  excerpt_length: 120 # 摘要字数
+
+# 分页
+per_page: 6
+
+# 日期格式
+date_format: YYYY年M月D日
+
+# 评论（可选，后续可接入系统）
+comment:
+  enable: true

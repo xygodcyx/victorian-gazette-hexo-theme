@@ -1,0 +1,72 @@
+<div class="article-main" style="margin: 0;">
+  <header class="article-header">
+    <p class="article-chapter">分类档案</p>
+    <h1 class="article-title">《<%= page.category %>》</h1>
+    <p class="article-subtitle">
+      —— 本栏共收录 <%= page.posts.length %> 篇文章
+    </p>
+  </header>
+
+  <div class="ornament-divider">❦ ❦ ❦</div>
+
+  <% if (page.posts.length > 0) { %>
+    <div class="story-list">
+      <% page.posts.each(function(post) { %>
+        <article class="story-card">
+          <h2 class="story-card-title">
+            <a href="<%= url_for(post.path) %>"><%= post.title %></a>
+          </h2>
+          <div class="story-card-meta">
+            <%= date(post.date, config.date_format || 'YYYY年M月D日') %>
+            <% if (post.tags && post.tags.length) { %>
+              ·
+              <% post.tags.each(function(tag) { %>
+                <a href="<%= url_for(tag.path) %>"><%= tag.name %></a>
+              <% }); %>
+            <% } %>
+            <% if (post.comments !== undefined && post.comments > 0) { %>
+              · <%= post.comments %>封来信
+            <% } %>
+          </div>
+          <p class="story-card-excerpt">
+            <%- post.excerpt || truncate(strip_html(post.content), {length: 150}) %>
+          </p>
+          <a href="<%= url_for(post.path) %>" class="card-read-more">继续阅读 →</a>
+        </article>
+      <% }); %>
+    </div>
+
+    <%- partial('_partial/pagination') %>
+
+  <% } else { %>
+    <div style="text-align: center; padding: 3rem 1rem;">
+      <p style="font-family: var(--font-decorative); font-size: 1.2rem; color: var(--text-secondary);">
+        此栏目尚未收录任何文章
+      </p>
+      <p style="font-family: var(--font-display); font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">
+        编辑正在烛光下奋笔疾书，敬请期待
+      </p>
+    </div>
+  <% } %>
+</div>
+
+<!-- 侧边栏：所有分类导航 -->
+<div class="widget" style="margin-top: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+  <h3 class="widget-title">所有分类</h3>
+  <div class="tag-cloud">
+    <% site.categories.sort('name').each(function(cat) { %>
+      <a href="<%= url_for(cat.path) %>" class="tag <%= page.category === cat.name ? 'current' : '' %>">
+        <%= cat.name %> (<%= cat.posts.length %>)
+      </a>
+    <% }); %>
+  </div>
+</div>
+
+<style>
+  .tag.current {
+    background: var(--accent-darkred);
+    color: #fff;
+    border-color: var(--accent-darkred);
+    box-shadow: 0 0 8px rgba(74, 26, 26, 0.3);
+  }
+</style>

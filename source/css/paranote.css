@@ -1,0 +1,182 @@
+/* ==========================================
+   段落旁注标记系统（Paragraph Sidenotes）
+   正文两侧持续显示，未悬停半透明，悬停不透明
+   ========================================== */
+
+/* ----- 带旁注的段落容器 ----- */
+.paranote-paragraph {
+  position: relative;
+  padding-right: 28px; /* 为右侧标注留空间 */
+  margin-bottom: 1.2em;
+  border-right: 3px solid transparent;
+  transition: border-color var(--transition-smooth);
+  text-underline-offset: 6px;
+}
+
+/* 段落左侧标记线（半透明） */
+.paranote-paragraph::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent-gold);
+  opacity: 0.3;
+  border-radius: 2px;
+  transition: opacity var(--transition-smooth);
+}
+
+/* 段落右侧标注文字块 */
+.paranote-marker {
+  position: absolute;
+  top: 50%;
+  right: -190px; /* 放在正文右侧空白区 */
+  width: 170px;
+  padding: 0.5em 0.8em;
+  background: var(--bg-card);
+  border: 1px solid var(--border-ornate);
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  box-shadow: var(--shadow-card);
+  opacity: 0; /* 默认半透明 */
+  transition: opacity var(--transition-smooth);
+  z-index: 5;
+  pointer-events: none;
+  transform: translateY(-10%);
+}
+
+/* 左侧标注的变体 */
+.paranote-marker-left {
+  right: auto;
+  left: -190px;
+}
+
+/* 标注连接线（从段落边缘到标注框） */
+.paranote-marker::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 0.8em;
+  width: 22px;
+  height: 1px;
+  background: var(--accent-gold);
+  opacity: 0.5;
+}
+.paranote-marker-left::before {
+  right: auto;
+  left: 100%;
+}
+
+/* 标注连接端点 */
+.paranote-marker::after {
+  content: '';
+  position: absolute;
+  right: calc(100% + 19px);
+  top: 0.5em;
+  width: 5px;
+  height: 5px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+.paranote-marker-left::after {
+  right: auto;
+  left: calc(100% + 19px);
+}
+
+/* ----- 悬停状态：标记线变不透明，标注文字变不透明 ----- */
+.paranote-paragraph:hover::before {
+  opacity: 1;
+}
+.paranote-paragraph:hover {
+  border-right-color: var(--accent-gold);
+}
+.paranote-paragraph:hover .paranote-marker {
+  opacity: 1;
+  pointer-events: auto;
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ----- 三种标注样式变体 ----- */
+
+/* 变体1：段落摘要标记（金色） */
+.paranote-summary .paranote-marker {
+  border-left: 3px solid var(--accent-gold);
+}
+
+/* 变体2：引用来源标记（暗红色） */
+.paranote-citation .paranote-marker {
+  border-left: 3px solid var(--accent-red);
+}
+.paranote-citation::before {
+  background: var(--accent-red);
+}
+.paranote-citation .paranote-marker::before,
+.paranote-citation .paranote-marker::after {
+  background: var(--accent-red);
+}
+
+/* 变体3：编辑按语标记（深绿色） */
+.paranote-editorial .paranote-marker {
+  border-left: 3px solid var(--accent-green, #3d5c3a);
+}
+.paranote-editorial::before {
+  background: var(--accent-green, #3d5c3a);
+}
+.paranote-editorial .paranote-marker::before,
+.paranote-editorial .paranote-marker::after {
+  background: var(--accent-green, #3d5c3a);
+}
+
+/* ----- 响应式：段落旁注在移动端的处理 ----- */
+@media (max-width: 1200px) {
+  .paranote-paragraph {
+    padding-right: 0;
+    border-right: none;
+  }
+  .paranote-marker {
+    right: -140px;
+    width: 130px;
+    font-size: 0.6rem;
+  }
+  .paranote-marker-left {
+    left: -140px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .paranote-marker,
+  .paranote-marker-left {
+    position: static;
+    width: auto;
+    margin: 0.3em 0 0.6em 1em;
+    padding: 0.3em 0.6em;
+    opacity: 0.6;
+    display: block;
+    border-left: 3px solid var(--accent-gold);
+    pointer-events: auto;
+    box-shadow: none;
+  }
+  .paranote-marker::before,
+  .paranote-marker::after,
+  .paranote-marker-left::before,
+  .paranote-marker-left::after {
+    display: none;
+  }
+  .paranote-paragraph:hover .paranote-marker {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .paranote-paragraph::before {
+    left: -8px;
+    width: 2px;
+  }
+  .paranote-marker {
+    font-size: 0.7rem;
+  }
+}

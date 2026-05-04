@@ -1,0 +1,30 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>
+    <% if (is_home()) { %> <%= config.title %> · <%=
+    config.subtitle %> <% } else if (is_post()) { %> <%=
+    page.title %> · <%= config.title %> <% } else if
+    (is_archive()) { %> 归档 · <%= config.title %> <% } else
+    { %> <%= page.title %> · <%= config.title %> <% } %>
+  </title>
+  <link
+    rel="stylesheet"
+    href="<%= url_for('/css/style.css') %>"
+  />
+  <link
+    rel="stylesheet"
+    href="<%= url_for('/css/post.css') %>"
+  />
+  <link
+    rel="stylesheet"
+    href="<%= url_for('/css/paranote.css') %>"
+  />
+  <link
+    rel="stylesheet"
+    href="<%= url_for('/css/marginalia.css') %>"
+  />
+</head>

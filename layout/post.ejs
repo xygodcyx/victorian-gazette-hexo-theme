@@ -1,0 +1,206 @@
+<div class="article-layout">
+
+  <!-- 左栏：作者信息 / 文章元数据 -->
+  <aside class="article-margin-left">
+    <div class="margin-widget">
+      <p class="margin-note">本文作者</p>
+      <p class="margin-note-em"><%= config.author %></p>
+    </div>
+    <div class="margin-widget">
+      <p class="margin-note">出版日期</p>
+      <p class="margin-note-em"><%= date(page.date, config.date_format || 'YYYY年M月D日') %></p>
+    </div>
+    <% if (page.categories && page.categories.length) { %>
+    <div class="margin-widget">
+      <p class="margin-note">栏目</p>
+      <p class="margin-note-em">
+        <% page.categories.each(function(cat) { %>
+          <a href="<%= url_for(cat.path) %>"><%= cat.name %></a>
+        <% }); %>
+      </p>
+    </div>
+    <% } %>
+    <% if (page.tags && page.tags.length) { %>
+    <div class="margin-widget">
+      <p class="margin-note">标签</p>
+      <div class="tag-cloud">
+        <% page.tags.each(function(tag) { %>
+          <a href="<%= url_for(tag.path) %>" class="tag"><%= tag.name %></a>
+        <% }); %>
+      </div>
+    </div>
+    <% } %>
+  </aside>
+
+  <!-- 中栏：正文 -->
+  <article class="article-main">
+
+    <header class="article-header">
+      <h1 class="article-title"><%= page.title %></h1>
+      <% if (page.subtitle || page.description) { %>
+        <p class="article-subtitle"><%= page.subtitle || page.description %></p>
+      <% } %>
+    </header>
+
+    <div class="ornament-divider">❦ ❦ ❦</div>
+
+    <div class="article-body">
+      <%- page.content %>
+    </div>
+
+    <div class="article-fin">❦</div>
+
+    <!-- 上下篇导航 -->
+    <nav class="article-nav">
+      <% if (page.prev) { %>
+        <a href="<%= url_for(page.prev.path) %>" class="article-nav-prev">
+          ← 上一篇<br /><span><%= page.prev.title %></span>
+        </a>
+      <% } else { %>
+        <span></span>
+      <% } %>
+      <% if (page.next) { %>
+        <a href="<%= url_for(page.next.path) %>" class="article-nav-next">
+          下一篇 →<br /><span><%= page.next.title %></span>
+        </a>
+      <% } else { %>
+        <span></span>
+      <% } %>
+    </nav>
+  </article>
+
+<!-- 右栏：相关推荐 -->
+<aside class="article-margin-right">
+  <div class="margin-widget">
+    <p class="margin-note">相关文章</p>
+    <ul class="margin-list">
+      <%
+        // 收集当前文章的所有标签
+        var currentTags = [];
+        if (page.tags && page.tags.length) {
+          page.tags.each(function(tag) {
+            currentTags.push(tag.name);
+          });
+        }
+        
+        // 收集当前文章的分类
+        var currentCats = [];
+        if (page.categories && page.categories.length) {
+          page.categories.each(function(cat) {
+            currentCats.push(cat.name);
+          });
+        }
+        
+        // 遍历所有文章，计算相似度分数
+        var scored = [];
+        site.posts.each(function(post) {
+          if (post._id === page._id) return; // 跳过自己
+          
+          var score = 0;
+          
+          // 标签匹配：每个共同标签 +3 分
+          if (post.tags && post.tags.length) {
+            post.tags.each(function(tag) {
+              if (currentTags.indexOf(tag.name) !== -1) {
+                score += 3;
+              }
+            });
+          }
+          
+          // 分类匹配：每个共同分类 +2 分
+          if (post.categories && post.categories.length) {
+            post.categories.each(function(cat) {
+              if (currentCats.indexOf(cat.name) !== -1) {
+                score += 2;
+              }
+            });
+          }
+          
+          // 日期接近：一周内的 +1 分
+          var daysDiff = Math.abs(new Date(post.date) - new Date(page.date)) / (1000 * 60 * 60 * 24);
+          if (daysDiff < 7) score += 1;
+          
+          scored.push({ post: post, score: score });
+        });
+        
+        // 按分数降序排列
+        scored.sort(function(a, b) { return b.score - a.score; });
+        
+        // 取前 5 名（至少显示 5 篇，分数为 0 的也显示以保证可遍历性）
+        var related = scored.slice(0, 5);
+        
+        // 如果不够5篇，用最新文章补足
+        if (related.length < 5) {
+          site.posts.sort('date', -1).each(function(post) {
+            if (related.length >= 5) return;
+            if (post._id === page._id) return;
+            var alreadyIn = related.some(function(r) { return r.post._id === post._id; });
+            if (!alreadyIn) {
+              related.push({ post: post, score: 0 });
+            }
+          });
+        }
+      %>
+      
+      <% related.forEach(function(item) { %>
+        <li>
+          <a href="<%= url_for(item.post.path) %>">
+            <%= item.post.title %>
+            <% if (item.score > 3) { %>
+              <span style="font-size:0.7em; color:var(--accent-gold);">★</span>
+            <% } %>
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+  
+  <!-- 随机入口：确保孤岛文章也能被发现 -->
+  <div class="margin-widget">
+    <p class="margin-note">随便翻翻</p>
+    <ul class="margin-list">
+      <%
+        var allPosts = site.posts.sort('date', -1).toArray();
+        // 取当前文章索引，推荐下一篇和随机一篇
+        var currentIndex = -1;
+        for (var i = 0; i < allPosts.length; i++) {
+          if (allPosts[i]._id === page._id) {
+            currentIndex = i;
+            break;
+          }
+        }
+        
+        // 下一篇（循环到开头）
+        var nextIndex = (currentIndex + 1) % allPosts.length;
+        if (allPosts[nextIndex]) {
+      %>
+        <li>
+          <a href="<%= url_for(allPosts[nextIndex].path) %>">
+            → <%= allPosts[nextIndex].title %>
+          </a>
+        </li>
+      <%
+        }
+        
+        // 随机一篇
+        var randomIndex;
+        do {
+          randomIndex = Math.floor(Math.random() * allPosts.length);
+        } while (randomIndex === currentIndex && allPosts.length > 1);
+        
+        if (allPosts[randomIndex]) {
+      %>
+        <li>
+          <a href="<%= url_for(allPosts[randomIndex].path) %>">
+            ✦ <%= allPosts[randomIndex].title %>
+          </a>
+        </li>
+      <%
+        }
+      %>
+    </ul>
+  </div>
+</aside>
+</div>
+
+<%- partial('_partial/comments') %>
