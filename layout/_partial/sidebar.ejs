@@ -5,7 +5,7 @@
     <h3 class="widget-title">本刊编辑</h3>
     <figure style="margin: 0 0 0.8rem 0; text-align: center;">
       <img
-        src="<%= url_for(theme.avatar || '/images/editor-portrait.jpg') %>"
+        src="<%= theme.avatar || './images/editor-portrait.jpg' %>"
         alt="<%= config.author %>"
         style="border: 2px solid var(--border-ornate); border-radius: 50%; width: 100px; height: 100px; object-fit: cover;"
       />
