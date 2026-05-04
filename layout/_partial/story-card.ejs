@@ -20,12 +20,14 @@
             <a href="/<%= tag.path %>"><%= tag.name %></a>
         <% }); %>
         <% } %>
-
         <% if (post.comments !== undefined && typeof post.comments === 'number' && post.comments > 0) { %>
         · <%= post.comments %>封来信
+        <% } else if((theme.comment.enable)) { %>
+        · 暂无来信
         <% } else { %>
-        暂无来信
+
         <% } %>
+             
         
     </div>
     <p class="story-card-excerpt">

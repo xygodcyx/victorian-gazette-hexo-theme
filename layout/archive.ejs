@@ -9,6 +9,8 @@
 
   <div class="ornament-divider">❦ ❦ ❦</div>
 
+  <main class="story-list">
+
   <% var year = 0; %>
   <% page.posts.each(function(post) { %>
     <% var postYear = date(post.date, 'YYYY'); %>
@@ -17,27 +19,9 @@
       <h2 class="list-heading" style="margin-top: 1.5rem;"><%= year %> 年</h2>
     <% } %>
 
-    <article class="story-card" style="margin-bottom: 1rem;">
-      <h2 class="story-card-title">
-        <a href="<%= url_for(post.path) %>"><%= post.title %></a>
-      </h2>
-      <div class="story-card-meta">
-        <%= date(post.date, config.date_format) %>
-        <% if (post.categories && post.categories.length) { %>
-          · 栏目：
-          <% post.categories.each(function(cat) { %>
-            <a href="<%= url_for(cat.path) %>"><%= cat.name %></a>
-          <% }); %>
-        <% } %>
-        <% if (post.tags && post.tags.length) { %>
-          ·
-          <% post.tags.each(function(tag) { %>
-            <a href="<%= url_for(tag.path) %>">#<%= tag.name %></a>
-          <% }); %>
-        <% } %>
-      </div>
-    </article>
+    <%- partial('_partial/story-card',{post}) %>
   <% }); %>
+  </main>
 
   <%- partial('_partial/pagination') %>
 </div>

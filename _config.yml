@@ -2,8 +2,7 @@
 
 # 博客名称
 title: QUHOU
-subtitle: 潜入数字深渊 · 追寻千禧遗光
-description: 维多利亚号外 · 复古日志
+subtitle: 写点想写的
 
 # 博主信息
 author: Quhou
@@ -12,19 +11,17 @@ avatar: /images/editor-portrait.jpg
 # 导航菜单
 menu:
   首页: /
-  散文随笔: /categories/散文随笔
+  随笔: /tags/随笔
   关于本刊: /about
 
 # 侧边栏
 sidebar:
-  bio: 写几句代码, 敲几个字符, 画几条粗线, 就这样慢慢过活
+  bio: 写几行代码, 敲几笔字符, 画几根细线, 就这样儿慢慢地活
   badge_text: 想你所想, 做你想做
 
 # 友链
 links:
-  # 老猫的静默花园: https://example.com
-  # CD旋转岁月: https://example.com
-  # 泛黄纸页: https://example.com
+  Oveln Blog: https://oveln.icu/
 
 # 首页设置
 index:
