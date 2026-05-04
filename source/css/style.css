@@ -95,9 +95,19 @@ img:hover {
   margin: 0 auto;
   background-color: var(--bg-paper);
 
+  border-style: double;
+  border-width: 6px;
+  border-color: var(--border-dark);
+  border-image-source: none;
+  border-radius: 0;
+
+  /* 添加回 outline（双重边框效果） */
+  outline: 2px solid var(--border-ornate);
+  outline-offset: -10px;
+
   /* --- 优化的图片边框 --- */
-  border-style: solid;
-  border-width: 24px; /* 这里决定边框视觉上的厚度 */
+  /* border-style: solid;
+  border-width: 6px; /* 这里决定边框视觉上的厚度 */
   border-radius: 8px;
 
   /* 
@@ -105,7 +115,7 @@ img:hover {
      fill 关键字非常重要：它会将图片的中心部分作为背景填充，
      这样你就不需要额外设置 background-image，且背景会与边框完美衔接。
   */
-  border-image-source: url('../images/victorian-border.png');
+  /* border-image-source: url('../images/victorian-border.png'); */
   border-image-slice: 100 fill;
 
   /* round 比 stretch 更好，它会微调花纹大小以确保完整显示，不会出现断裂感 */

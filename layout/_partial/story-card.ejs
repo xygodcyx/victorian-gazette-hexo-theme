@@ -11,7 +11,13 @@
 
         <% if (post.categories && post.categories.length) { %>
         · <% post.categories.each(function(cat) { %>
-            <%= cat.name %>
+            <a href="/<%= cat.path %>"><%= cat.name %></a>
+        <% }); %>
+        <% } %>
+
+        <% if (post.tags && post.tags.length) { %>
+        · <% post.tags.each(function(tag) { %>
+            <a href="/<%= tag.path %>"><%= tag.name %></a>
         <% }); %>
         <% } %>
 
@@ -23,7 +29,7 @@
         
     </div>
     <p class="story-card-excerpt">
-        <%- post.excerpt || truncate(strip_html(post.content), {length: 120}) %>
+        <%- post.excerpt || post.content.slice(0,60) %>
     </p>
     <a href="<%= url_for(post.path) %>" class="card-read-more">继续阅读 →</a>
 </article>

@@ -663,11 +663,10 @@ article a:has(img) {
 }
 
 /* ==========================================
-   维多利亚表格样式
+   维多利亚表格样式（排除代码高亮表格）
    ========================================== */
 
-/* ----- 表格容器（响应式滚动） ----- */
-.article-body table {
+.article-body table:not(figure.highlight table) {
   width: 100%;
   max-width: 100%;
   border-collapse: collapse;
@@ -676,17 +675,14 @@ article a:has(img) {
   font-family: var(--font-body);
   color: var(--text-primary);
   box-shadow: var(--shadow-card);
-  overflow-x: auto;
-  display: block;
 }
 
-/* ----- 表头 ----- */
-.article-body thead {
+.article-body thead:not(figure.highlight thead) {
   background: var(--accent-darkred);
   color: var(--text-light);
 }
 
-.article-body thead th {
+.article-body thead th:not(figure.highlight th) {
   padding: 0.8em 1em;
   font-family: var(--font-display);
   font-size: 0.85rem;
@@ -697,42 +693,41 @@ article a:has(img) {
   white-space: nowrap;
 }
 
-/* 表头首列和末列装饰 */
-.article-body thead th:first-child {
+.article-body
+  thead
+  th:first-child:not(figure.highlight th) {
   border-left: 2px solid var(--accent-gold);
 }
 
-.article-body thead th:last-child {
+.article-body thead th:last-child:not(figure.highlight th) {
   border-right: 2px solid var(--accent-gold);
 }
 
-/* ----- 表体 ----- */
-.article-body tbody tr {
+.article-body tbody tr:not(figure.highlight tr) {
   background: var(--bg-card);
-  transition: background var(--transition-smooth);
   border-bottom: 1px solid rgba(196, 173, 124, 0.3);
 }
 
-/* 斑马纹 */
-.article-body tbody tr:nth-child(even) {
+.article-body
+  tbody
+  tr:nth-child(even):not(figure.highlight tr) {
   background: rgba(191, 155, 78, 0.05);
 }
 
-/* 行悬停 */
-.article-body tbody tr:hover {
+.article-body tbody tr:hover:not(figure.highlight tr) {
   background: rgba(191, 155, 78, 0.12);
 }
 
-/* ----- 单元格 ----- */
-.article-body tbody td {
+.article-body tbody td:not(figure.highlight td) {
   padding: 0.7em 1em;
   line-height: 1.6;
   text-align: left;
   vertical-align: top;
 }
 
-/* 首列特殊处理（常用于标签/名称） */
-.article-body tbody td:first-child {
+.article-body
+  tbody
+  td:first-child:not(figure.highlight td) {
   font-family: var(--font-display);
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -743,25 +738,26 @@ article a:has(img) {
   border-left: 3px solid transparent;
 }
 
-.article-body tbody tr:hover td:first-child {
+.article-body
+  tbody
+  tr:hover
+  td:first-child:not(figure.highlight td) {
   border-left-color: var(--accent-gold);
 }
 
-/* 数字列右对齐 */
-.article-body tbody td:last-child {
+.article-body tbody td:last-child:not(figure.highlight td) {
   text-align: right;
   font-family: var(--font-mono, 'Courier New', monospace);
   font-size: 0.85rem;
   color: var(--text-secondary);
 }
 
-/* ----- 表尾（可选） ----- */
-.article-body tfoot {
+.article-body tfoot:not(figure.highlight tfoot) {
   border-top: 2px solid var(--border-ornate);
   background: rgba(191, 155, 78, 0.06);
 }
 
-.article-body tfoot td {
+.article-body tfoot td:not(figure.highlight td) {
   padding: 0.7em 1em;
   font-family: var(--font-display);
   font-size: 0.8rem;
@@ -769,8 +765,7 @@ article a:has(img) {
   color: var(--accent-darkred);
 }
 
-/* ----- 表格标题（caption） ----- */
-.article-body table caption {
+.article-body caption:not(figure.highlight caption) {
   font-family: var(--font-decorative);
   font-size: 1rem;
   color: var(--accent-darkred);
@@ -780,46 +775,118 @@ article a:has(img) {
   border-bottom: 1px solid var(--accent-gold);
   margin-bottom: 0.5em;
 }
+/* ==========================================
+   维多利亚 · 折叠详情 (details/summary)
+   ========================================== */
+.article-body details {
+  margin: 1.5em 0;
+  border: 1px solid var(--border-ornate);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition-smooth);
+}
 
-/* ----- 响应式：小屏幕表格改为卡片布局 ----- */
+.article-body details:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* 摘要头部 */
+.article-body summary {
+  padding: 0.8em 1.2em;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--accent-darkred);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  user-select: none;
+  list-style: none; /* 去掉默认三角标记 */
+  position: relative;
+  background: rgba(191, 155, 78, 0.06);
+  border-bottom: 1px solid transparent;
+  transition:
+    background var(--transition-smooth),
+    border-color var(--transition-smooth);
+}
+
+.article-body summary::-webkit-details-marker {
+  display: none; /* Chrome隐藏默认三角 */
+}
+
+/* 自定义折叠指示器 */
+.article-body summary::before {
+  content: '❧';
+  display: inline-block;
+  margin-right: 0.6em;
+  color: var(--accent-gold);
+  transition: transform var(--transition-smooth);
+}
+
+/* 展开时指示器旋转 */
+.article-body details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* 悬停效果 */
+.article-body summary:hover {
+  background: rgba(191, 155, 78, 0.12);
+  border-bottom-color: var(--accent-gold);
+}
+
+/* 展开内容区域 */
+.article-body details > *:not(summary) {
+  margin: 0;
+  padding: 1em 1.5em;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* 如果内容直接是段落，避免额外缩进 */
+.article-body details > p {
+  padding: 1em 1.5em;
+}
+
+/* 嵌套细节的缩进调整 */
+.article-body details details {
+  margin: 0.5em 0 0.5em 1em;
+  box-shadow: none;
+  border-left: 3px solid var(--accent-gold);
+}
+
+/* 响应式表格（小屏幕） */
 @media (max-width: 768px) {
-  .article-body table {
+  .article-body table:not(figure.highlight table) {
     display: block;
     border: none;
     box-shadow: none;
   }
-
-  .article-body thead {
-    display: none; /* 隐藏表头 */
+  .article-body thead:not(figure.highlight thead) {
+    display: none;
   }
-
-  .article-body tbody,
-  .article-body tbody tr,
-  .article-body tbody td {
+  .article-body tbody:not(figure.highlight tbody),
+  .article-body tbody tr:not(figure.highlight tr),
+  .article-body tbody td:not(figure.highlight td) {
     display: block;
     width: 100%;
   }
-
-  .article-body tbody tr {
+  .article-body tbody tr:not(figure.highlight tr) {
     margin-bottom: 1em;
     border: 1px solid var(--border-ornate);
     background: var(--bg-card);
     box-shadow: var(--shadow-card);
   }
-
-  .article-body tbody td {
+  .article-body tbody td:not(figure.highlight td) {
     padding: 0.5em 1em;
-    text-align: left;
     border-bottom: 1px dotted rgba(196, 173, 124, 0.3);
   }
-
-  .article-body tbody td:last-child {
-    text-align: left;
+  .article-body
+    tbody
+    td:last-child:not(figure.highlight td) {
     border-bottom: none;
+    text-align: left;
   }
-
-  /* 用伪元素显示列名 */
-  .article-body tbody td::before {
+  .article-body tbody td:not(figure.highlight td)::before {
     content: attr(data-label);
     display: block;
     font-family: var(--font-display);
