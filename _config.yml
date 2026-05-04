@@ -11,12 +11,12 @@ avatar: /images/editor-portrait.jpg
 # 导航菜单
 menu:
   首页: /
-  随笔: /tags/随笔
+  散文随笔: /tags/随笔
   关于本刊: /about
 
 # 侧边栏
 sidebar:
-  bio: 写几行代码, 敲几笔字符, 画几根细线, 就这样儿慢慢地活
+  bio: 写几行代码, 敲几笔字符, 画几根细线, 就这样儿慢慢地过活
   badge_text: 想你所想, 做你想做
 
 # 友链
