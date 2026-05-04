@@ -743,7 +743,7 @@ article a:has(img) {
   letter-spacing: 0.05em;
   color: var(--accent-darkred);
   font-weight: 600;
-  white-space: nowrap;
+  white-space: wrap;
   border-left: 3px solid transparent;
 }
 
@@ -755,7 +755,7 @@ article a:has(img) {
 }
 
 .article-body tbody td:last-child:not(figure.highlight td) {
-  text-align: right;
+  text-align: left;
   font-family: var(--font-mono, 'Courier New', monospace);
   font-size: 0.85rem;
   color: var(--text-secondary);
