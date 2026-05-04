@@ -10,7 +10,7 @@
 <% if (posts.length > 0) { %>
   <% var featured = posts[0]; %>
   <section class="featured-story">
-    <div class="featured-label">✦ 今日头条 ✦</div>
+    <div class="featured-label">头条</div>
     <h2 class="featured-title">
       <a href="<%= url_for(featured.path) %>"><%= featured.title %></a>
     </h2>
@@ -40,10 +40,14 @@
         </figure>
       <% } %>
       <p>
-        <%- featured.excerpt || truncate(strip_html(featured.content), {length: 400}) %>
+        <%- featured.content %>
       </p>
     </div>
-    <a href="<%= url_for(featured.path) %>" class="featured-read-more">继续阅读全文 →</a>
+    <a href="<%= url_for(featured.path) %>" class="featured-read-more">继续阅读全文</a>
+    <% if (typeof posts[1] !== "undefined") { %>
+      <br>
+      <a href="<%= url_for(posts[1].path) %>" class="featured-read-more">下一篇(<%- posts[1].title %>) →</a>
+    <% } %>
   </section>
 <% } %>
 
