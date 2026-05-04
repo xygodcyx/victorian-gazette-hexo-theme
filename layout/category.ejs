@@ -12,27 +12,7 @@
   <% if (page.posts.length > 0) { %>
     <div class="story-list">
       <% page.posts.each(function(post) { %>
-        <article class="story-card">
-          <h2 class="story-card-title">
-            <a href="<%= url_for(post.path) %>"><%= post.title %></a>
-          </h2>
-          <div class="story-card-meta">
-            <%= date(post.date, config.date_format || 'YYYY年M月D日') %>
-            <% if (post.tags && post.tags.length) { %>
-              ·
-              <% post.tags.each(function(tag) { %>
-                <a href="<%= url_for(tag.path) %>"><%= tag.name %></a>
-              <% }); %>
-            <% } %>
-            <% if (post.comments !== undefined && post.comments > 0) { %>
-              · <%= post.comments %>封来信
-            <% } %>
-          </div>
-          <p class="story-card-excerpt">
-            <%- post.excerpt || truncate(strip_html(post.content), {length: 150}) %>
-          </p>
-          <a href="<%= url_for(post.path) %>" class="card-read-more">继续阅读 →</a>
-        </article>
+          <%- partial('_partial/story-card', { post }) %>
       <% }); %>
     </div>
 

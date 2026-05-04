@@ -251,6 +251,21 @@ img:hover {
   width: 100%;
 }
 
+/* ----- 导航栏当前页高亮 ----- */
+.nav-list a.current {
+  color: var(--accent-red);
+  font-weight: bold;
+}
+
+.nav-list a.current::after {
+  width: 100%;
+  background: var(--accent-red);
+}
+
+.nav-list a.current:hover {
+  color: var(--accent-red);
+}
+
 /* ---------- 头条文章区域 ---------- */
 .featured-story {
   margin-bottom: 2.5rem;
@@ -344,7 +359,7 @@ img:hover {
 }
 
 /* 首字下沉 */
-.featured-body p:first-of-type::first-letter {
+.featured-body::first-letter {
   font-family: var(--font-accent);
   font-size: 3.8em;
   float: left;
@@ -357,6 +372,7 @@ img:hover {
 
 .featured-body p {
   margin-bottom: 1em;
+  word-break: break-word;
 }
 
 .featured-read-more {
@@ -436,6 +452,11 @@ img:hover {
   box-shadow: var(--shadow-card);
   transition: all var(--transition-smooth);
   position: relative;
+
+  /* 新增：防止卡片在移动端溢出 */
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .story-card:hover {
@@ -449,7 +470,13 @@ img:hover {
   color: var(--accent-darkred);
   margin-bottom: 0.4rem;
   line-height: 1.2;
+
+  /* 新增：防止长标题溢出 */
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
+
 .story-card-title a {
   color: inherit;
   text-decoration: none;
@@ -512,7 +539,7 @@ img:hover {
 }
 
 /* 首字下沉 */
-.story-card-excerpt:first-of-type::first-letter {
+.story-card-excerpt::first-letter {
   font-family: var(--font-accent);
   font-size: 2.8em;
   float: left;
@@ -528,10 +555,16 @@ img:hover {
   color: var(--text-primary);
   line-height: 1.6;
   margin-bottom: 0.8rem;
+
+  /* 超出隐藏 */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+
+  /* 新增：防止长单词撑开 */
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .card-read-more {
@@ -626,6 +659,7 @@ img:hover {
   text-decoration: none;
   transition: var(--transition-smooth);
 }
+
 .tag:hover {
   background: var(--accent-gold);
   color: #fff;
@@ -636,23 +670,32 @@ img:hover {
 .pagination {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.3rem;
   margin-top: 1.5rem;
   font-family: var(--font-display);
+  max-width: 100%;
 }
+
 .pagination a,
 .pagination span {
-  padding: 0.4em 1em;
+  padding: 0.4em 0.8em;
   border: 1px solid var(--border-ornate);
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.85rem;
   transition: var(--transition-smooth);
+  white-space: nowrap;
+  min-width: 2em;
+  text-align: center;
 }
+
 .pagination a:hover {
   background: var(--accent-gold);
   color: #fff;
+  border-color: var(--accent-gold);
 }
+
 .pagination .current {
   background: var(--accent-darkred);
   color: #fff;
@@ -691,7 +734,16 @@ img:hover {
 @media (max-width: 768px) {
   .content-grid {
     grid-template-columns: 1fr;
+    overflow: hidden; /* 新增 */
   }
+  .story-list {
+    min-width: 0; /* 新增：允许 flex 子元素收缩 */
+  }
+
+  .story-card {
+    min-width: 0; /* 允许收缩 */
+  }
+
   .featured-story {
     padding: 1rem;
   }
@@ -733,16 +785,33 @@ img:hover {
   body {
     border-image-source: none;
   }
+  .date-line {
+    padding: 0.4em 1em;
+  }
   .gazette {
     border-width: 3px;
     border-width: 4px;
     outline-offset: -6px;
     padding: 0.8rem 1rem;
   }
+  .nav-list {
+    justify-content: start;
+    margin: 0 auto;
+  }
   .featured-title {
     font-size: 1.6rem;
   }
   .story-card-title {
     font-size: 1.3rem;
+  }
+  .pagination {
+    gap: 0.2rem;
+  }
+
+  .pagination a,
+  .pagination span {
+    /* padding: 0.3em 0.5em; */
+    font-size: 0.65rem;
+    min-width: 1.6em;
   }
 }

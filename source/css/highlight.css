@@ -1,0 +1,241 @@
+/* ==========================================
+   维多利亚号外 · 代码高亮主题
+   基于 highlight.js github 主题
+   色调：暖棕 + 羊皮纸底 + 暗红关键词
+   ========================================== */
+
+/* ----- 代码块容器 ----- */
+.article-body pre {
+  width: 100%;
+  background: #fdfaf3;
+  border: 2px solid var(--border-ornate);
+  border-radius: 4px;
+  padding: 1.2em 1.5em;
+  margin: 1.5em 0;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  box-shadow: inset 0 0 30px rgba(139, 119, 90, 0.06);
+  position: relative;
+}
+
+/* 装饰角 */
+.article-body pre::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 16px;
+  height: 16px;
+  border-top: 1px solid var(--accent-gold);
+  border-left: 1px solid var(--accent-gold);
+  opacity: 0.5;
+}
+
+.article-body pre::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  border-bottom: 1px solid var(--accent-gold);
+  border-right: 1px solid var(--accent-gold);
+  opacity: 0.5;
+}
+
+/* 行内代码 */
+.article-body code {
+  background: rgba(191, 155, 78, 0.08);
+  border: 1px solid rgba(196, 173, 124, 0.4);
+  border-radius: 3px;
+  padding: 0.15em 0.4em;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.85em;
+  color: var(--accent-darkred);
+  white-space: nowrap;
+}
+
+/* 代码块内的 code 不继承行内样式 */
+.article-body pre code {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre;
+}
+
+/* ----- 语法高亮颜色 ----- */
+
+/* 注释 */
+.hljs-comment,
+.hljs-quote {
+  color: #8b7d6b;
+  font-style: italic;
+}
+
+/* 关键字 */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #8b2e2e;
+  font-weight: bold;
+}
+
+/* 字符串 */
+.hljs-string,
+.hljs-addition {
+  color: #5c4a2e;
+}
+
+/* 数字 */
+.hljs-number,
+.hljs-literal {
+  color: #6b4e3d;
+}
+
+/* 函数名 */
+.hljs-title,
+.hljs-section,
+.hljs-name {
+  color: #6b3a3a;
+}
+
+/* 属性 */
+.hljs-attr,
+.hljs-attribute {
+  color: #7a5a3a;
+}
+
+/* 变量 */
+.hljs-variable,
+.hljs-template-variable {
+  color: #8b4513;
+}
+
+/* 内置对象 */
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #4a6b4a;
+}
+
+/* 正则表达式 */
+.hljs-regexp {
+  color: #8b6b3a;
+}
+
+/* 链接 */
+.hljs-link {
+  color: #6b4a2e;
+  text-decoration: underline;
+}
+
+/* 删除 */
+.hljs-deletion {
+  color: #8b2e2e;
+  background: rgba(139, 46, 46, 0.08);
+}
+
+/* 强调 */
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* 标签 */
+.hljs-tag {
+  color: #6b4a3a;
+}
+
+/* 选择器类 */
+.hljs-selector-class {
+  color: #7a4a3a;
+}
+
+/* 选择器 ID */
+.hljs-selector-id {
+  color: #8b3a3a;
+}
+
+/* 参数 */
+.hljs-params {
+  color: #5a4a3a;
+}
+
+/* 元数据 */
+.hljs-meta {
+  color: #6b5d44;
+}
+
+/* 符号 */
+.hljs-symbol,
+.hljs-bullet {
+  color: #8b6b3a;
+}
+
+/* 代码块行号 */
+.hljs-ln-numbers {
+  color: #b8a88a;
+  border-right: 1px solid rgba(196, 173, 124, 0.4);
+  padding-right: 0.8em;
+  margin-right: 1em;
+  text-align: right;
+  user-select: none;
+}
+
+/* 代码块行号高亮行 */
+.hljs-ln-line.hljs-ln-code {
+  padding-left: 0.5em;
+}
+
+/* ----- 重置高亮表格，防止被文章表格样式污染 ----- */
+.article-body .highlight table,
+.article-body .hljs-ln {
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  color: inherit !important;
+  background: transparent !important;
+  border-collapse: collapse !important;
+}
+
+.highlight table *:hover {
+  background-color: transparent !important;
+}
+
+.article-body .highlight td,
+.article-body .hljs-ln td,
+.article-body .highlight th,
+.article-body .hljs-ln th {
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  text-align: left !important;
+  vertical-align: top !important;
+}
+
+.article-body .hljs-ln-numbers {
+  color: #b8a88a !important;
+  border-right: 1px solid rgba(196, 173, 124, 0.4) !important;
+  padding-right: 0.8em !important;
+  margin-right: 1em !important;
+  text-align: right !important;
+  user-select: none;
+  background: transparent !important;
+}
+
+.article-body .hljs-ln-code {
+  padding-left: 0.5em !important;
+  background: transparent !important;
+  border: none !important;
+}

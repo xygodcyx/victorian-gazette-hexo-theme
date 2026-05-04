@@ -4,12 +4,19 @@
   <aside class="article-margin-left">
     <div class="margin-widget">
       <p class="margin-note">本文作者</p>
-      <p class="margin-note-em"><%= config.author %></p>
+      <p class="margin-note-em"><%= page.author || config.author %></p>
     </div>
     <div class="margin-widget">
       <p class="margin-note">出版日期</p>
       <p class="margin-note-em"><%= date(page.date, config.date_format || 'YYYY年M月D日') %></p>
     </div>
+    <!-- 最后编辑日期：仅当文章修改过且与发布日期不同时显示 -->
+    <% if (page.updated && page.updated !== page.date) { %>
+    <div class="margin-widget">
+      <p class="margin-note">最后修订</p>
+      <p class="margin-note-em"><%= date(page.updated, config.date_format || 'YYYY年M月D日') %></p>
+    </div>
+    <% } %>
     <% if (page.categories && page.categories.length) { %>
     <div class="margin-widget">
       <p class="margin-note">栏目</p>
@@ -42,7 +49,11 @@
       <% } %>
     </header>
 
-    <div class="ornament-divider">❦ ❦ ❦</div>
+    <div class="ornament-divider">
+      <button class="font-size-toggle" onclick="toggleFontSize()" title="切换正文字号">
+        字号<span class="font-size-hint" id="font-size-label">中</span>
+      </button>
+    </div>
 
     <div class="article-body">
       <%- page.content %>
@@ -146,9 +157,9 @@
         <li>
           <a href="<%= url_for(item.post.path) %>">
             <%= item.post.title %>
-            <% if (item.score > 3) { %>
+            <!-- <% if (item.score > 3) { %>
               <span style="font-size:0.7em; color:var(--accent-gold);">★</span>
-            <% } %>
+            <% } %> -->
           </a>
         </li>
       <% }); %>
@@ -176,7 +187,7 @@
       %>
         <li>
           <a href="<%= url_for(allPosts[nextIndex].path) %>">
-            → <%= allPosts[nextIndex].title %>
+            <%= allPosts[nextIndex].title %>
           </a>
         </li>
       <%
@@ -192,7 +203,7 @@
       %>
         <li>
           <a href="<%= url_for(allPosts[randomIndex].path) %>">
-            ✦ <%= allPosts[randomIndex].title %>
+            <%= allPosts[randomIndex].title %>
           </a>
         </li>
       <%

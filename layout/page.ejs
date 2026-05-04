@@ -1,11 +1,19 @@
-<div class="article-main" style="margin: 0">
+<article class="article-main font-medium" style="margin: 0">
   <header class="article-header">
     <h1 class="article-title"><%= page.title %></h1>
   </header>
 
-  <div class="ornament-divider">❦ ❦ ❦</div>
+  <div class="ornament-divider">
+    <button
+      class="font-size-toggle"
+      onclick="toggleFontSize()"
+      title="切换正文字号"
+    >
+      字号<span class="font-size-hint" id="font-size-label"
+        >中</span
+      >
+    </button>
+  </div>
 
   <div class="article-body"><%- page.content %></div>
-
-  <div class="article-fin">❦</div>
-</div>
+</article>

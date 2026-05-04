@@ -147,9 +147,9 @@
 }
 
 .footnotes-list li:target {
-  background: rgba(191, 155, 78, 0.15);
+  background: rgba(191, 155, 78, 0.2);
   border-left-color: var(--accent-red);
-  animation: footnoteHighlight 2s ease-out;
+  animation: anchorHighlight 2.5s ease-out;
 }
 
 @keyframes footnoteHighlight {
@@ -181,6 +181,139 @@
 }
 .footnote-backref:hover {
   color: var(--accent-red);
+}
+
+/* ==========================================
+   锚点跳转高亮动画
+   ========================================== */
+
+/* ----- 脚注高亮（增强版） ----- */
+.footnotes-list li:target {
+  background: rgba(191, 155, 78, 0.2);
+  border-left-color: var(--accent-red);
+  animation: anchorHighlight 2.5s ease-out;
+}
+
+@keyframes anchorHighlight {
+  0% {
+    background: rgba(191, 155, 78, 0.35);
+    transform: translateX(4px);
+    border-left-width: 4px;
+  }
+  20% {
+    background: rgba(191, 155, 78, 0.28);
+  }
+  100% {
+    background: rgba(191, 155, 78, 0.04);
+    transform: translateX(0);
+    border-left-width: 2px;
+  }
+}
+
+/* ----- 脚注引用（正文中的上标）被点击后高亮 ----- */
+.footnote-ref:target {
+  background: rgba(255, 45, 45, 0.2);
+  border-radius: 3px;
+  padding: 0 2px;
+  animation: refHighlight 2s ease-out;
+}
+
+@keyframes refHighlight {
+  0% {
+    background: rgba(255, 45, 45, 0.4);
+    outline: 2px solid var(--accent-red);
+  }
+  100% {
+    background: transparent;
+    outline: none;
+  }
+}
+
+/* ----- 段落旁注被锚点定位时高亮 ----- */
+.paranote-paragraph:target {
+  background: rgba(191, 155, 78, 0.08);
+  animation: paranoteHighlight 2s ease-out;
+}
+
+.paranote-paragraph:target::before {
+  opacity: 1;
+  width: 5px;
+  transition: all 0.3s ease;
+}
+
+@keyframes paranoteHighlight {
+  0% {
+    background: rgba(191, 155, 78, 0.18);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+/* ----- 图片被锚点定位时高亮 ----- */
+.article-image-right:target,
+.article-image-full:target {
+  outline: 3px solid var(--accent-gold);
+  outline-offset: 3px;
+  animation: imageHighlight 2s ease-out;
+}
+
+@keyframes imageHighlight {
+  0% {
+    outline-color: var(--accent-red);
+    outline-width: 4px;
+    box-shadow: 0 0 20px rgba(191, 155, 78, 0.4);
+  }
+  100% {
+    outline-color: var(--accent-gold);
+    outline-width: 0;
+    box-shadow: var(--shadow-card);
+  }
+}
+
+/* ----- 标题被锚点定位时高亮 ----- */
+.article-title:target,
+.story-card-title:target {
+  background: linear-gradient(
+    to right,
+    rgba(191, 155, 78, 0.2),
+    transparent 80%
+  );
+  padding-left: 0.5em;
+  animation: titleHighlight 2s ease-out;
+}
+
+@keyframes titleHighlight {
+  0% {
+    background: linear-gradient(
+      to right,
+      rgba(191, 155, 78, 0.35),
+      transparent 60%
+    );
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+/* ----- 引用块被锚点定位时高亮 ----- */
+.article-body blockquote:target {
+  border-left-color: var(--accent-red);
+  border-left-width: 5px;
+  background: rgba(191, 155, 78, 0.1);
+  animation: blockquoteHighlight 2s ease-out;
+}
+
+@keyframes blockquoteHighlight {
+  0% {
+    border-left-color: var(--accent-red);
+    background: rgba(191, 155, 78, 0.2);
+  }
+  100% {
+    border-left-color: var(--accent-gold);
+    background: rgba(191, 155, 78, 0.06);
+    border-left-width: 3px;
+  }
 }
 
 /* ----- 响应式：旁批在移动端的处理 ----- */

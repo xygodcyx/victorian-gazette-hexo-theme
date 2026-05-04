@@ -1,19 +1,43 @@
 <% if (page.total > 1) { %>
   <div class="pagination">
+    <%
+      var currentUrl = page.path || '';
+      var base = '';
+      
+      if (currentUrl.indexOf('categories/') !== -1) {
+        // 先去掉分页部分，再去掉 index.html，最后清理斜杠
+        base = currentUrl.replace(/page\/\d+\//, '').replace(/index\.html$/, '').replace(/\/$/, '');
+      } else if (currentUrl.indexOf('tags/') !== -1) {
+        base = currentUrl.replace(/page\/\d+\//, '').replace(/index\.html$/, '').replace(/\/$/, '');
+      } else if (currentUrl.indexOf('archives') !== -1) {
+        base = 'archives';
+      } else {
+        base = '';
+      }
+    %>
+
     <% if (page.prev) { %>
-      <a href="<%= url_for(page.prev_link) %>">← 前页</a>
+      <a href="<%= url_for(page.prev_link).replace(/index\.html$/, '') %>">← 前页</a>
     <% } %>
 
     <% for (var i = 1; i <= page.total; i++) { %>
       <% if (i === page.current) { %>
         <span class="current"><%= i %></span>
       <% } else { %>
-        <a href="<%= url_for(i === 1 ? '/' : '/page/' + i) %>"><%= i %></a>
+        <%
+          var link = '';
+          if (i === 1) {
+            link = base ? '/' + base + '/' : '/';
+          } else {
+            link = base ? '/' + base + '/page/' + i + '/' : '/page/' + i + '/';
+          }
+        %>
+        <a href="<%= url_for(link).replace(/index\.html$/, '') %>"><%= i %></a>
       <% } %>
     <% } %>
 
     <% if (page.next) { %>
-      <a href="<%= url_for(page.next_link) %>">后页 →</a>
+      <a href="<%= url_for(page.next_link).replace(/index\.html$/, '') %>">后页 →</a>
     <% } %>
   </div>
 <% } %>

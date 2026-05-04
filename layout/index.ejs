@@ -16,15 +16,21 @@
     </h2>
     <div class="featured-meta">
       发布于 <%= date(featured.date, config.date_format || 'YYYY年M月D日') %>
+      <!-- 如果文章修改过，显示编辑标记 -->
+      <% if (featured.updated && featured.updated !== featured.date) { %>
+        · 修订于 <%= date(featured.updated, 'YYYY年M月D日') %>
+      <% } %>
       <% if (featured.categories && featured.categories.length) { %>
         · 栏目：
         <% featured.categories.each(function(cat) { %>
           <a href="<%= url_for(cat.path) %>"><%= cat.name %></a>
         <% }); %>
       <% } %>
-      <% if (featured.comments !== undefined) { %>
+      <% if (featured.comments !== undefined && typeof featured.comments === 'number' && featured.comments > 0) { %>
         · 读者来信：<%= featured.comments %>封
-      <% } %>
+      <% } else { %>
+        暂无来信
+      <% }  %>
     </div>
     <div class="featured-body">
       <!-- 如果有特色图片 -->
@@ -33,7 +39,9 @@
           <img src="<%= featured.thumbnail || featured.banner %>" alt="<%= featured.title %>" />
         </figure>
       <% } %>
-      <%- featured.excerpt || truncate(strip_html(featured.content), {length: 400}) %>
+      <p>
+        <%- featured.excerpt || truncate(strip_html(featured.content), {length: 400}) %>
+      </p>
     </div>
     <a href="<%= url_for(featured.path) %>" class="featured-read-more">继续阅读全文 →</a>
   </section>
@@ -46,26 +54,7 @@
 
     <% for (var i = 1; i < Math.min(posts.length, 6); i++) { %>
       <% var post = posts[i]; %>
-      <article class="story-card">
-        <h2 class="story-card-title">
-          <a href="<%= url_for(post.path) %>"><%= post.title %></a>
-        </h2>
-        <div class="story-card-meta">
-          <%= date(post.date, 'YYYY年M月D日') %>
-          <% if (post.categories && post.categories.length) { %>
-            · <% post.categories.each(function(cat) { %>
-              <%= cat.name %>
-            <% }); %>
-          <% } %>
-          <% if (post.comments !== undefined) { %>
-            · <%= post.comments %>封来信
-          <% } %>
-        </div>
-        <p class="story-card-excerpt">
-          <%- post.excerpt || truncate(strip_html(post.content), {length: 120}) %>
-        </p>
-        <a href="<%= url_for(post.path) %>" class="card-read-more">继续阅读 →</a>
-      </article>
+      <%- partial('_partial/story-card', { post }) %>
     <% } %>
 
     <%- partial('_partial/pagination') %>
