@@ -11,18 +11,24 @@
     (is_archive()) { %> 归档 · <%= config.title %> <% } else
     { %> <%= page.title %> · <%= config.title %> <% } %>
   </title>
-  <link rel="stylesheet" href="<%= './css/style.css' %>" />
-  <link rel="stylesheet" href="<%= './css/post.css' %>" />
   <link
     rel="stylesheet"
-    href="<%= './css/paranote.css' %>"
+    href="<%- url_for('/css/style.css') %>"
   />
   <link
     rel="stylesheet"
-    href="<%= './css/marginalia.css' %>"
+    href="<%- url_for('/css/post.css') %>"
   />
   <link
     rel="stylesheet"
-    href="<%= './css/highlight.css' %>"
+    href="<%- url_for('/css/paranote.css') %>"
+  />
+  <link
+    rel="stylesheet"
+    href="<%- url_for('/css/marginalia.css') %>"
+  />
+  <link
+    rel="stylesheet"
+    href="<%- url_for('/css/highlight.css') %>"
   />
 </head>
