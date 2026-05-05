@@ -1,22 +1,26 @@
-;(function () {
-  var checkbox = document.getElementById('immersive-toggle')
-  if (!checkbox) return
+addEventListener('DOMContentLoaded', () => {
+  ;(function () {
+    var checkbox = document.getElementById(
+      'immersive-toggle',
+    )
+    if (!checkbox) return
 
-  // 页面加载时从 localStorage 恢复状态
-  var savedState = localStorage.getItem('immersive-mode')
-  if (savedState === 'true') {
-    checkbox.checked = true
-  }
+    // 页面加载时从 localStorage 恢复状态
+    var savedState = localStorage.getItem('immersive-mode')
+    if (savedState === 'true') {
+      checkbox.checked = true
+    }
 
-  // 监听 checkbox 变化，存储状态
-  checkbox.addEventListener('change', function () {
-    localStorage.setItem('immersive-mode', this.checked)
-  })
+    // 监听 checkbox 变化，存储状态
+    checkbox.addEventListener('change', function () {
+      localStorage.setItem('immersive-mode', this.checked)
+    })
 
-  // 如果页面通过链接跳转（下一篇/上一篇），状态可能丢失，
-  // 但我们在页面加载时已经恢复了 checkbox，所以无需额外处理。
-  // 注意：浏览器的前进后退也会保留表单状态，但用 localStorage 更可靠。
-})()
+    // 如果页面通过链接跳转（下一篇/上一篇），状态可能丢失，
+    // 但我们在页面加载时已经恢复了 checkbox，所以无需额外处理。
+    // 注意：浏览器的前进后退也会保留表单状态，但用 localStorage 更可靠。
+  })()
+})
 
 function toggleImmersive() {
   var body = document.body
@@ -74,7 +78,8 @@ function toggleImmersive() {
 }
 
 // ESC 键退出
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keypress', function (e) {
+  console.log(e.key)
   if (
     e.key === 'Escape' &&
     document.body.classList.contains('immersive-mode')
