@@ -6,12 +6,11 @@ subtitle: 写点想写的
 
 # 博主信息
 author: Quhou
-avatar: ./images/editor-portrait.jpg
+avatar: /images/editor-portrait.jpg
 
 # 导航菜单
 menu:
   首页: /
-  散文随笔: /tags/随笔
   关于本刊: /about
 
 # 侧边栏
@@ -21,12 +20,12 @@ sidebar:
 
 # 友链
 links:
-  Oveln Blog: https://oveln.icu/
+  Quhou Blog: https://quhou.top/
 
 # 首页设置
 index:
   featured_count: 1 # 头条文章数
-  list_count: 5 # 小文章数
+  list_count: 6 # 小文章数
   excerpt_length: 120 # 摘要字数
 
 # 分页
@@ -38,3 +37,9 @@ date_format: YYYY年M月D日
 # 评论（可选，后续可接入系统）
 comment:
   enable: true
+
+# 数学公式
+math:
+  enable: true
+  engine: katex # 可选: mathjax
+

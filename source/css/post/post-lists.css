@@ -1,0 +1,158 @@
+/* ==========================================
+   文章页 · 维多利亚列表样式
+   ========================================== */
+
+/* 无序列表 */
+.article-body ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.2em 0;
+}
+
+.article-body ul li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* 列表项文本容器 */
+.article-body ul li::before {
+  content: '❧';
+  color: var(--accent-gold);
+  font-size: 0.85em;
+  flex-shrink: 0;
+  position: relative;
+  top: 0.05em;
+}
+
+/* 嵌套子列表强制换行，独占整行 */
+.article-body li > ul,
+.article-body li > ol {
+  flex-basis: 100%;
+  margin: 0.3em 0 0.3em 1.5em;
+  padding-left: 0;
+}
+
+/* 第二层标记 */
+.article-body li > ul > li::before {
+  content: '–';
+  color: var(--border-ornate);
+  font-size: 0.9em;
+  top: 0;
+}
+
+/* 第三层标记 */
+.article-body li > ul > li > ul > li::before {
+  content: '·';
+  color: var(--text-secondary);
+  font-size: 1.2em;
+  font-weight: bold;
+  top: -0.1em;
+}
+
+/* 嵌套子列表中的 li 也需要 flex */
+.article-body li > ul > li,
+.article-body li > ol > li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
+/* 有序列表 */
+.article-body ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.2em 0;
+  counter-reset: victorian-counter;
+}
+
+.article-body ol li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 1rem;
+  line-height: 1.7;
+  counter-increment: victorian-counter;
+}
+
+.article-body ol li::before {
+  content: counter(victorian-counter) '.';
+  font-family: var(--font-display);
+  font-size: 0.85em;
+  color: var(--accent-darkred);
+  font-weight: bold;
+  flex-shrink: 0;
+  min-width: 1.5em;
+  text-align: right;
+}
+
+/* 罗马数字变体 */
+.article-body ol.roman {
+  counter-reset: roman-counter;
+}
+
+.article-body ol.roman li {
+  counter-increment: roman-counter;
+}
+
+.article-body ol.roman li::before {
+  content: counter(roman-counter, upper-roman) '.';
+  font-family: var(--font-decorative);
+  color: var(--accent-red);
+  font-size: 0.9em;
+}
+
+/* 嵌套有序列表（二级用字母） */
+.article-body li > ol {
+  counter-reset: sub-counter;
+}
+
+.article-body li > ol > li {
+  counter-increment: sub-counter;
+}
+
+.article-body li > ol > li::before {
+  content: counter(sub-counter, lower-alpha) '.';
+  color: var(--text-secondary);
+  font-size: 0.85em;
+  min-width: 1.5em;
+  text-align: right;
+}
+
+/* 列表项内的段落 */
+.article-body li > p {
+  flex-basis: 100%;
+  margin-bottom: 0.3em;
+}
+
+/* 任务列表复选框 */
+.article-body input[type='checkbox'] {
+  appearance: none;
+  width: 1em;
+  height: 1em;
+  border: 1px solid var(--border-ornate);
+  background: var(--bg-card);
+  margin: 0 0.5em 0 0;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  align-self: flex-start;
+  top: 0.25em;
+}
+
+.article-body input[type='checkbox']:checked::after {
+  content: '✓';
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  color: var(--accent-darkred);
+  font-size: 0.8em;
+  font-weight: bold;
+}

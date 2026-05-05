@@ -1,0 +1,180 @@
+/* ==========================================
+   维多利亚号外 · 文章卡片与列表
+   ========================================== */
+
+/* 内容网格 */
+.content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* 文章列表 */
+.story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.list-heading {
+  font-family: var(--font-decorative);
+  font-size: 1.5rem;
+  color: var(--accent-darkred);
+  letter-spacing: 0.1em;
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 6px rgba(191, 155, 78, 0.2);
+}
+
+/* 文章卡片 */
+.story-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-ornate);
+  padding: 1.3rem 1.6rem;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-smooth);
+  position: relative;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.story-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.story-card-title {
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  color: var(--accent-darkred);
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.story-card-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.story-card-title a:hover {
+  color: var(--accent-gold);
+  text-shadow: var(--shadow-gold);
+}
+
+.story-card-meta {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+}
+
+.story-card-meta a {
+  color: var(--accent-darkred);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px dotted var(--accent-gold);
+  transition: var(--transition-smooth);
+  padding: 0 0.1em;
+}
+
+.story-card-meta a:hover {
+  color: var(--accent-red);
+  border-bottom-style: solid;
+  border-bottom-color: var(--accent-red);
+  background: rgba(191, 155, 78, 0.08);
+}
+
+.story-card-meta a[href*='/categories/'] {
+  font-weight: 600;
+  color: var(--accent-darkred);
+}
+
+.story-card-meta a[href*='/categories/']:hover {
+  color: var(--accent-gold);
+  background: rgba(191, 155, 78, 0.15);
+}
+
+.story-card-meta a[href*='/tags/'] {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.story-card-meta a[href*='/tags/']::before {
+  content: '#';
+  color: var(--accent-gold);
+  font-size: 0.9em;
+}
+
+.story-card-excerpt {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.story-card-excerpt::first-letter {
+  font-family: var(--font-accent);
+  font-size: 2.8em;
+  float: left;
+  line-height: 0.7;
+  padding-right: 0.15em;
+  padding-top: 0.08em;
+  color: var(--accent-red);
+  text-shadow: 1px 1px 10px var(--accent-gold-light);
+}
+
+.card-read-more {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent-darkred);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-gold);
+  transition: var(--transition-smooth);
+}
+
+.card-read-more:hover {
+  color: var(--accent-gold);
+  padding-left: 0.3rem;
+}
+
+.story-card:target {
+  background: rgba(191, 155, 78, 0.12);
+  border-left: 4px solid var(--accent-gold);
+  animation: anchorHighlight 1s ease-in;
+}
+
+@keyframes anchorHighlight {
+  0% {
+    background: rgba(191, 155, 78, 0.25);
+    border-left-color: var(--accent-red);
+  }
+  50% {
+    background: rgba(191, 155, 78, 0.04);
+    border-left-color: var(--accent-gold);
+  }
+  100% {
+    background: transparent;
+    border-left: none;
+  }
+}

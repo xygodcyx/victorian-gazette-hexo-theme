@@ -1,0 +1,27 @@
+/* ==========================================
+   维多利亚号外 · 数学公式样式
+   ========================================== */
+
+/* KaTeX 公式容器 */
+.katex-display {
+  margin: 1.5em 0;
+  padding: 1em;
+  background: var(--bg-card);
+  border: 1px solid var(--border-ornate);
+  border-left: 3px solid var(--accent-gold);
+  overflow-x: auto;
+}
+
+.katex-display > .katex {
+  font-size: 1.1rem;
+}
+
+/* 行内公式 */
+.katex {
+  font-size: 1.05em;
+}
+
+/* MathJax 容器 */
+mjx-container {
+  margin: 1em 0;
+}

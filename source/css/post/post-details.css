@@ -1,0 +1,79 @@
+/* ==========================================
+   文章页 · 维多利亚折叠详情
+   ========================================== */
+
+.article-body details {
+  margin: 1.5em 0;
+  border: 1px solid var(--border-ornate);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition-smooth);
+}
+
+.article-body details:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* 摘要头部 */
+.article-body summary {
+  padding: 0.8em 1.2em;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--accent-darkred);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  position: relative;
+  background: rgba(191, 155, 78, 0.06);
+  border-bottom: 1px solid transparent;
+  transition:
+    background var(--transition-smooth),
+    border-color var(--transition-smooth);
+}
+
+.article-body summary::-webkit-details-marker {
+  display: none;
+}
+
+/* 自定义折叠指示器 */
+.article-body summary::before {
+  content: '❧';
+  display: inline-block;
+  margin-right: 0.6em;
+  color: var(--accent-gold);
+  transition: transform var(--transition-smooth);
+}
+
+/* 展开时指示器旋转 */
+.article-body details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* 悬停效果 */
+.article-body summary:hover {
+  background: rgba(191, 155, 78, 0.12);
+  border-bottom-color: var(--accent-gold);
+}
+
+/* 展开内容区域 */
+.article-body details > *:not(summary) {
+  margin: 0;
+  padding: 1em 1.5em;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* 内容直接是段落 */
+.article-body details > p {
+  padding: 1em 1.5em;
+}
+
+/* 嵌套细节 */
+.article-body details details {
+  margin: 0.5em 0 0.5em 1em;
+  box-shadow: none;
+  border-left: 3px solid var(--accent-gold);
+}

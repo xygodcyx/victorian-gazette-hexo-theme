@@ -31,4 +31,9 @@
     rel="stylesheet"
     href="<%- url_for('/css/highlight.css') %>"
   />
+
+  <% if (theme.math && theme.math.enable) { %>
+    <link rel="stylesheet" href="<%= url_for('/css/math.css') %>" />
+  <% } %>
+
 </head>

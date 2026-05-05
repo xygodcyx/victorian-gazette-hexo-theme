@@ -53,6 +53,10 @@
       <button class="font-size-toggle" onclick="toggleFontSize()" title="切换正文字号">
         字号<span class="font-size-hint" id="font-size-label">中</span>
       </button>
+     <input type="checkbox" id="immersive-toggle" class="immersive-checkbox" style="display:none">
+      <label for="immersive-toggle" class="font-size-toggle immersive-toggle-btn" title="沉浸式阅读">
+        沉浸<span class="font-size-hint">阅读</span>
+      </label>
     </div>
 
     <div class="article-body">
@@ -212,6 +216,7 @@
     </ul>
   </div>
 </aside>
+<label for="immersive-toggle" class="immersive-exit-label">退出沉浸 ✕</label>
 </div>
 
 <%- partial('_partial/comments') %>

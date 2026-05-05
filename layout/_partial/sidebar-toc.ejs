@@ -1,0 +1,13 @@
+<% var posts = page.posts.toArray(); %>
+<% if (posts.length > 1) { %>
+  <div class="widget sidebar-toc">
+    <h3 class="widget-title">本页文章</h3>
+    <ul class="widget-list">
+      <% for (var i = 1; i < posts.length; i++) { %>
+        <li>
+          <a href="#post-<%= posts[i].title %>"><%- posts[i].title %></a>
+        </li>
+      <% } %>
+    </ul>
+  </div>
+<% } %>

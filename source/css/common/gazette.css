@@ -1,0 +1,30 @@
+/* ==========================================
+   维多利亚号外 · 主容器与边框
+   ========================================== */
+
+.gazette {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  background-color: var(--bg-paper);
+
+  border-style: double;
+  border-width: 6px;
+  border-color: var(--border-dark);
+  border-image-source: none;
+  border-radius: 0;
+
+  outline: 2px solid var(--border-ornate);
+  outline-offset: -10px;
+
+  border-image-slice: 100 fill;
+  border-image-repeat: round;
+  border-image-outset: 0;
+
+  padding: 2.5rem 3rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.gazette::before {
+  display: none;
+}

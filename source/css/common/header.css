@@ -1,0 +1,133 @@
+/* ==========================================
+   维多利亚号外 · 报头与导航
+   ========================================== */
+
+/* 报头 */
+.masthead {
+  text-align: center;
+  border-bottom: 3px double var(--border-dark);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.newspaper-title {
+  font-family: var(--font-decorative);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  color: var(--accent-darkred);
+  text-shadow: 1px 1px 0 var(--accent-gold-light);
+  letter-spacing: 0.1em;
+  animation: fadeInDown 1s ease-in;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.date-line {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-ornate);
+  border-bottom: 1px solid var(--border-ornate);
+  display: inline-block;
+  padding: 0.4em 2em;
+  margin-top: 0.8rem;
+}
+
+.masthead::before,
+.masthead::after {
+  content: '❦';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: var(--accent-gold);
+  opacity: 0.6;
+}
+
+.masthead::before {
+  left: 1rem;
+}
+
+.masthead::after {
+  right: 1rem;
+}
+
+/* 导航栏 */
+.nav-section {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border-ornate);
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  list-style: none;
+}
+
+.nav-list li {
+  padding: 0 1.2rem;
+  border-right: 1px solid var(--border-ornate);
+}
+
+.nav-list li:last-child {
+  border-right: none;
+}
+
+.nav-list a {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent-darkred);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+.nav-list a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-gold);
+  transition: width var(--transition-smooth);
+}
+
+.nav-list a:hover {
+  color: var(--accent-gold);
+}
+
+.nav-list a:hover::after {
+  width: 100%;
+}
+
+.nav-list a.current {
+  color: var(--accent-red);
+  font-weight: bold;
+}
+
+.nav-list a.current::after {
+  width: 100%;
+  background: var(--accent-red);
+}
+
+.nav-list a.current:hover {
+  color: var(--accent-red);
+}

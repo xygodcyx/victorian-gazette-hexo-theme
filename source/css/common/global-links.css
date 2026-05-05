@@ -1,0 +1,47 @@
+/* ==========================================
+   维多利亚号外 · 全局链接样式
+   ========================================== */
+
+/* 侧边栏内容区域的链接 */
+.widget-text a {
+  color: var(--accent-darkred);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-gold);
+  transition: var(--transition-smooth);
+}
+
+.widget-text a:hover {
+  color: var(--accent-red);
+  border-bottom-style: solid;
+}
+
+/* 文章卡片摘要中的链接 */
+.story-card-excerpt a {
+  color: var(--accent-darkred);
+  text-decoration: none;
+}
+
+.story-card-excerpt a:hover {
+  color: var(--accent-red);
+  text-decoration: underline;
+}
+
+/* 旁注内的链接 */
+.marginalia-note a {
+  color: var(--accent-darkred);
+  text-decoration: underline;
+}
+
+.marginalia-note a:hover {
+  color: var(--accent-red);
+}
+
+/* 段落标注内的链接 */
+.paranote-marker a {
+  color: var(--accent-darkred);
+  text-decoration: underline;
+}
+
+.paranote-marker a:hover {
+  color: var(--accent-red);
+}

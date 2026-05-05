@@ -1,0 +1,127 @@
+/* ==========================================
+   文章页 · 维多利亚表格样式
+   ========================================== */
+
+.article-body table:not(figure.highlight table) {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 1.8em 0;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-card);
+  display: table;
+}
+
+.article-body
+  table:not(figure.highlight table)
+  td:empty::after {
+  content: '\00a0';
+}
+
+/* 表头 */
+.article-body thead:not(figure.highlight thead) {
+  background: var(--accent-darkred);
+  color: var(--text-light);
+}
+
+.article-body thead th:not(figure.highlight th) {
+  padding: 0.8em 1em;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: left;
+  border-bottom: 3px double var(--accent-gold);
+  white-space: nowrap;
+}
+
+.article-body
+  thead
+  th:first-child:not(figure.highlight th) {
+  border-left: 2px solid var(--accent-gold);
+}
+
+.article-body thead th:last-child:not(figure.highlight th) {
+  border-right: 2px solid var(--accent-gold);
+}
+
+/* 表体行 */
+.article-body tbody tr:not(figure.highlight tr) {
+  background: var(--bg-card);
+  border-bottom: 1px solid rgba(196, 173, 124, 0.3);
+}
+
+.article-body
+  tbody
+  tr:nth-child(even):not(figure.highlight tr) {
+  background: rgba(191, 155, 78, 0.05);
+}
+
+.article-body tbody tr:hover:not(figure.highlight tr) {
+  background: rgba(191, 155, 78, 0.12);
+}
+
+/* 表体单元格 */
+.article-body tbody td:not(figure.highlight td) {
+  padding: 0.7em 1em;
+  line-height: 1.6;
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-body
+  tbody
+  td:first-child:not(figure.highlight td) {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-darkred);
+  font-weight: 600;
+  white-space: wrap;
+  border-left: 3px solid transparent;
+}
+
+.article-body
+  tbody
+  tr:hover
+  td:first-child:not(figure.highlight td) {
+  border-left-color: var(--accent-gold);
+}
+
+.article-body tbody td:last-child:not(figure.highlight td) {
+  text-align: left;
+  font-family: var(--font-mono, 'Courier New', monospace);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* 表尾 */
+.article-body tfoot:not(figure.highlight tfoot) {
+  border-top: 2px solid var(--border-ornate);
+  background: rgba(191, 155, 78, 0.06);
+}
+
+.article-body tfoot td:not(figure.highlight td) {
+  padding: 0.7em 1em;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--accent-darkred);
+}
+
+/* 表格标题 */
+.article-body caption:not(figure.highlight caption) {
+  font-family: var(--font-decorative);
+  font-size: 1rem;
+  color: var(--accent-darkred);
+  letter-spacing: 0.05em;
+  text-align: center;
+  padding: 0.5em;
+  border-bottom: 1px solid var(--accent-gold);
+  margin-bottom: 0.5em;
+}

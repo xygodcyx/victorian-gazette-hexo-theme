@@ -1,11 +1,11 @@
 <aside class="sidebar">
-
+  <%- partial('_partial/sidebar-toc') %>
   <!-- 编辑肖像 -->
   <div class="widget">
     <h3 class="widget-title">本刊编辑</h3>
     <figure style="margin: 0 0 0.8rem 0; text-align: center;">
       <img
-        src="<%= theme.avatar || './images/editor-portrait.jpg' %>"
+        src="<%= url_for(theme.avatar || '/images/editor-portrait.jpg') %>"
         alt="<%= config.author %>"
         style="border: 2px solid var(--border-ornate); border-radius: 50%; width: 100px; height: 100px; object-fit: cover;"
       />
@@ -40,7 +40,7 @@
   <!-- 装饰徽章 -->
   <div class="widget" style="text-align: center">
     <img
-      src="<%= './images/editor-portrait.jpg' %>"
+      src="<%= url_for('/images/editor-portrait.jpg') %>"
       alt="装饰徽章"
       style="max-width: 120px; height: auto; margin: 0.5rem 0;"
     />

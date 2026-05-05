@@ -1,0 +1,111 @@
+/* ==========================================
+   维多利亚号外 · 响应式样式
+   ========================================== */
+
+/* 平板端 */
+@media (max-width: 1024px) {
+  .gazette {
+    padding: 1.5rem;
+  }
+
+  .content-grid {
+    gap: 1.5rem;
+  }
+
+  .featured-image {
+    width: 40%;
+  }
+}
+
+/* 手机端 */
+@media (max-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    overflow: hidden;
+  }
+
+  .story-list {
+    min-width: 0;
+  }
+
+  .story-card {
+    min-width: 0;
+  }
+
+  .featured-story {
+    padding: 1rem;
+  }
+
+  .featured-image {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 1rem 0;
+  }
+
+  .masthead::before,
+  .masthead::after {
+    display: none;
+  }
+
+  .nav-list li {
+    border-right: none;
+    padding: 0.3rem 0.8rem;
+  }
+
+  .newspaper-title {
+    font-size: 2.2rem;
+  }
+
+  .gazette {
+    border-style: double;
+    border-width: 6px;
+    border-color: var(--border-dark);
+    border-image-source: none;
+    border-radius: 0;
+    outline: 2px solid var(--border-ornate);
+    outline-offset: -10px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* 小屏手机 */
+@media (max-width: 480px) {
+  body {
+    border-image-source: none;
+  }
+
+  .date-line {
+    padding: 0.4em 1em;
+  }
+
+  .gazette {
+    border-width: 4px;
+    outline-offset: -6px;
+    padding: 0.8rem 1rem;
+  }
+
+  .nav-list {
+    justify-content: start;
+    margin: 0 auto;
+  }
+
+  .featured-title {
+    font-size: 1.6rem;
+  }
+
+  .story-card-title {
+    font-size: 1.3rem;
+  }
+
+  .pagination {
+    gap: 0.2rem;
+  }
+
+  .pagination a,
+  .pagination span {
+    font-size: 0.65rem;
+    min-width: 1.6em;
+  }
+}

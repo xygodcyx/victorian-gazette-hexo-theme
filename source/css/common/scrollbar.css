@@ -1,0 +1,49 @@
+/* ==========================================
+   维多利亚号外 · 滚动条样式
+   ========================================== */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-ornate) var(--bg-paper);
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-paper);
+  border: 1px solid rgba(196, 173, 124, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-ornate);
+  border-radius: 4px;
+  border: 1px solid rgba(196, 173, 124, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--bg-paper);
+}
+
+/* 代码块内滚动条更细 */
+.article-body pre::-webkit-scrollbar {
+  height: 4px;
+}
+
+.article-body pre::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+}
+
+/* 沉浸模式下滚动条稍宽 */
+body:has(#immersive-toggle:checked)
+  .gazette::-webkit-scrollbar {
+  width: 10px;
+}

@@ -1,0 +1,114 @@
+/* ==========================================
+   文章页 · 正文内链接样式
+   ========================================== */
+
+/* 基础链接 */
+article a {
+  color: var(--accent-darkred);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-gold);
+  transition: all var(--transition-smooth);
+  position: relative;
+}
+
+article a:hover {
+  color: var(--accent-red);
+  border-bottom-style: solid;
+  border-bottom-color: var(--accent-red);
+}
+
+/* 外部链接（新窗口或 http 开头） */
+article a[target='_blank']::after,
+article a[href^='http']:not([href*='localhost'])::after {
+  content: ' ↗';
+  font-size: 0.7em;
+  color: var(--accent-gold);
+  vertical-align: super;
+}
+
+/* 分类链接 */
+article a[href*='/categories/'] {
+  color: var(--accent-darkred);
+  background: rgba(191, 155, 78, 0.08);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+  border-bottom: none;
+  font-family: var(--font-display);
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+article a[href*='/categories/']:hover {
+  background: var(--accent-gold);
+  color: #fff;
+}
+
+/* 标签链接 */
+article a[href*='/tags/'] {
+  color: var(--text-secondary);
+  border-bottom: none;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85em;
+}
+
+article a[href*='/tags/']::before {
+  content: '#';
+  color: var(--accent-gold);
+  margin-right: 0.1em;
+}
+
+article a[href*='/tags/']:hover {
+  color: var(--accent-red);
+}
+
+/* 页内锚点链接（跳转到脚注等） */
+article a[href^='#'] {
+  border-bottom: none;
+  color: var(--accent-red);
+  font-weight: bold;
+}
+
+article a[href^='#']:hover {
+  color: var(--accent-gold);
+  text-shadow: var(--shadow-gold);
+}
+
+/* 已访问链接 */
+article a:visited {
+  opacity: 0.85;
+}
+
+/* 引用块内的链接 */
+.article-body blockquote a {
+  color: var(--text-secondary);
+  border-bottom-color: rgba(191, 155, 78, 0.5);
+}
+
+.article-body blockquote a:hover {
+  color: var(--accent-darkred);
+  border-bottom-color: var(--accent-darkred);
+}
+
+/* 图片链接去掉下划线 */
+article a:has(img) {
+  border-bottom: none;
+}
+
+/* 文章标签区域的链接 */
+.article-tags .tag {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  background: rgba(191, 155, 78, 0.1);
+  border: 1px solid var(--border-ornate);
+  padding: 0.25em 0.7em;
+  color: var(--accent-darkred);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.article-tags .tag:hover {
+  background: var(--accent-gold);
+  color: #fff;
+  border-color: var(--accent-gold);
+}

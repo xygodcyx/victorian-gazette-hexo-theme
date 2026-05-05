@@ -43,15 +43,28 @@
   box-shadow: var(--shadow-card);
   opacity: 0; /* 默认半透明 */
   transition: opacity var(--transition-smooth);
-  z-index: 5;
+  z-index: 99999;
   pointer-events: none;
   transform: translateY(-10%);
+}
+
+.index-page .paranote-marker::after {
+  right: auto;
+  left: calc(100% + 19px);
+}
+.index-page .paranote-marker::before {
+  right: auto;
+  left: 100%;
+}
+.index-page .paranote-marker {
+  right: auto;
+  left: -190px;
 }
 
 /* 左侧标注的变体 */
 .paranote-marker-left {
   right: auto;
-  left: -190px;
+  left: -205px;
 }
 
 /* 标注连接线（从段落边缘到标注框） */
@@ -67,7 +80,7 @@
 }
 .paranote-marker-left::before {
   right: auto;
-  left: 100%;
+  left: calc(100%);
 }
 
 /* 标注连接端点 */

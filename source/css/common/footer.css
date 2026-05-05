@@ -1,0 +1,31 @@
+/* ==========================================
+   维多利亚号外 · 页脚
+   ========================================== */
+
+.gazette-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px double var(--border-dark);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-secondary);
+}
+
+.gazette-footer .gold-text {
+  color: var(--accent-gold);
+}
+
+.gazette-footer a {
+  color: var(--accent-gold);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-gold);
+  transition: var(--transition-smooth);
+}
+
+.gazette-footer a:hover {
+  color: var(--accent-gold-light);
+  border-bottom-style: solid;
+}

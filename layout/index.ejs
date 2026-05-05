@@ -6,63 +6,87 @@
 
 <% var posts = page.posts.toArray(); %>
 
-<!-- 头条文章 -->
-<% if (posts.length > 0) { %>
-  <% var featured = posts[0]; %>
-  <section class="featured-story">
-    <div class="featured-label">头条</div>
-    <h2 class="featured-title">
-      <a href="<%= url_for(featured.path) %>"><%= featured.title %></a>
-    </h2>
-    <div class="featured-meta">
-      发布于 <%= date(featured.date, config.date_format || 'YYYY年M月D日') %>
-      <!-- 如果文章修改过，显示编辑标记 -->
-      <% if (featured.updated && featured.updated !== featured.date) { %>
-        · 修订于 <%= date(featured.updated, 'YYYY年M月D日') %>
-      <% } %>
-      <% if (featured.categories && featured.categories.length) { %>
-        · 栏目：
-        <% featured.categories.each(function(cat) { %>
-          <a href="<%= url_for(cat.path) %>"><%= cat.name %></a>
-        <% }); %>
-      <% } %>
-      <% if (featured.comments !== undefined && typeof featured.comments === 'number' && featured.comments > 0) { %>
-        · 读者来信：<%= featured.comments %>封
-      <% } else { %>
-        暂无来信
-      <% }  %>
-    </div>
-    <div class="featured-body">
-      <!-- 如果有特色图片 -->
-      <% if (featured.thumbnail || featured.banner) { %>
-        <figure class="featured-image">
-          <img src="<%= featured.thumbnail || featured.banner %>" alt="<%= featured.title %>" />
-        </figure>
-      <% } %>
-      <p>
+<div class="index-page">
+<!-- 没有文章时 -->
+<% if (posts.length === 0) { %>
+  <div style="text-align: center; padding: 3rem 1rem;">
+    <p style="font-family: var(--font-decorative); font-size: 1.2rem; color: var(--text-secondary);">
+      本刊尚未收录任何文章
+    </p>
+    <p style="font-family: var(--font-display); font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">
+      编辑正在烛光下奋笔疾书，敬请期待
+    </p>
+  </div>
+<% } else { %>
+
+  <!-- 头条文章：只在第 1 页显示 -->
+  <% if (page.current === 1 && posts.length > 0) { %>
+    <% var featured = posts[0]; %>
+    <section class="featured-story">
+      <div class="featured-label">头条</div>
+      <h2 class="featured-title">
+        <a href="<%= url_for(featured.path) %>"><%= featured.title %></a>
+      </h2>
+      <div class="featured-meta">
+        发布于 <%= date(featured.date, config.date_format || 'YYYY年M月D日') %>
+        <% if (featured.updated && featured.updated !== featured.date) { %>
+          · 修订于 <%= date(featured.updated, 'YYYY年M月D日') %>
+        <% } %>
+        <% if (featured.categories && featured.categories.length) { %>
+          · 栏目：
+          <% featured.categories.each(function(cat) { %>
+            <a href="<%= url_for(cat.path) %>"><%= cat.name %></a>
+          <% }); %>
+        <% } %>
+      </div>
+      <div class="featured-body">
+        <% if (featured.thumbnail || featured.banner) { %>
+          <figure class="featured-image">
+            <img src="<%= featured.thumbnail || featured.banner %>" alt="<%= featured.title %>" />
+          </figure>
+        <% } %>
         <%- featured.content %>
-      </p>
-    </div>
-    <a href="<%= url_for(featured.path) %>" class="featured-read-more">继续阅读全文</a>
-    <% if (typeof posts[1] !== "undefined") { %>
+      </div>
       <br>
-      <a href="<%= url_for(posts[1].path) %>" class="featured-read-more">下一篇(<%- posts[1].title %>) →</a>
-    <% } %>
-  </section>
+      <a href="<%= url_for(featured.path) %>" class="featured-read-more">继续阅读全文 →</a>
+
+      <!-- 展开/收起按钮 -->
+      <div class="featured-toggle">
+        <button class="featured-toggle-btn" onclick="toggleFeatured()">展开全文 ▼</button>
+      </div>
+    </section>
+
+    <!-- 下方：小文章列表 + 侧边栏 -->
+    <div class="content-grid">
+      <main class="story-list">
+        <h3 class="list-heading">更多文章</h3>
+
+        <% for (var i = 1; i < posts.length; i++) { %>
+          <%- partial('_partial/story-card', { post: posts[i] }) %>
+        <% } %>
+
+        <%- partial('_partial/pagination') %>
+      </main>
+
+      <%- partial('_partial/sidebar') %>
+    </div>
+
+  <% } else { %>
+    <!-- 第 2 页及以后：全部文章列表（无头条） -->
+    <div class="content-grid">
+      <main class="story-list">
+        <h3 class="list-heading">文章列表</h3>
+
+        <% posts.forEach(function(post) { %>
+          <%- partial('_partial/story-card', { post: post }) %>
+        <% }); %>
+
+        <%- partial('_partial/pagination') %>
+      </main>
+
+      <%- partial('_partial/sidebar') %>
+    </div>
+  <% } %>
+
 <% } %>
-
-<!-- 下方：小文章列表 + 侧边栏 -->
-<div class="content-grid">
-  <main class="story-list">
-    <h3 class="list-heading">更多文章</h3>
-
-    <% for (var i = 1; i < Math.min(posts.length, 6); i++) { %>
-      <% var post = posts[i]; %>
-      <%- partial('_partial/story-card', { post }) %>
-    <% } %>
-
-    <%- partial('_partial/pagination') %>
-  </main>
-
-  <%- partial('_partial/sidebar') %>
 </div>

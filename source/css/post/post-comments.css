@@ -1,0 +1,144 @@
+/* ==========================================
+   文章页 · 评论区
+   ========================================== */
+
+.comments-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px double var(--border-dark);
+}
+
+.comments-heading {
+  font-family: var(--font-decorative);
+  font-size: 1.5rem;
+  color: var(--accent-darkred);
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* 单条评论 */
+.comment-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dotted var(--border-ornate);
+}
+
+.comment-avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--border-ornate);
+  object-fit: cover;
+}
+
+.comment-body {
+  flex: 1;
+}
+
+.comment-author {
+  font-family: var(--font-accent);
+  font-size: 0.95rem;
+  color: var(--accent-darkred);
+  margin-bottom: 0.3rem;
+}
+
+.comment-date {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+}
+
+.comment-text {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* 评论表单 */
+.comment-form {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-ornate);
+  box-shadow: var(--shadow-card);
+}
+
+.comment-form-title {
+  font-family: var(--font-decorative);
+  font-size: 1.2rem;
+  color: var(--accent-darkred);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-input {
+  padding: 0.6em 0.8em;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  border: 1px solid var(--border-ornate);
+  background: var(--bg-paper);
+  color: var(--text-primary);
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.form-input:focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 4px rgba(191, 155, 78, 0.3);
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 0.6em 0.8em;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  border: 1px solid var(--border-ornate);
+  background: var(--bg-paper);
+  color: var(--text-primary);
+  outline: none;
+  resize: vertical;
+  margin-bottom: 1rem;
+  transition: var(--transition-smooth);
+}
+
+.form-textarea:focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 4px rgba(191, 155, 78, 0.3);
+}
+
+.form-button {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 0.6em 1.8em;
+  background: var(--accent-darkred);
+  color: #fff;
+  border: 1px solid var(--accent-darkred);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.form-button:hover {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+.form-note {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-left: 1rem;
+  font-style: italic;
+}

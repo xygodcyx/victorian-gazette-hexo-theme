@@ -1,0 +1,35 @@
+/* ==========================================
+   维多利亚号外 · CSS 变量
+   ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=UnifrakturMaguntia&display=swap');
+
+:root {
+  --bg-paper: #faf5e9;
+  --bg-dark: #2a2116;
+  --bg-card: #fefcf7;
+  --text-primary: #3a3022;
+  --text-secondary: #6b5d44;
+  --text-light: #fef8ec;
+  --accent-gold: #bf9b4e;
+  --accent-gold-light: #e7d29a;
+  --accent-red: #8b2e2e;
+  --accent-darkred: #4a1a1a;
+  --border-ornate: #c4ad7c;
+  --border-dark: #4a3c28;
+  --shadow-card:
+    0 2px 12px rgba(0, 0, 0, 0.07),
+    0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover:
+    0 6px 20px rgba(0, 0, 0, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-gold: 0 0 10px rgba(191, 155, 78, 0.4);
+  --font-display:
+    'Playfair Display', 'Times New Roman', serif;
+  --font-decorative:
+    'UnifrakturMaguntia', 'Old English Text MT', serif;
+  --font-accent: 'Abril Fatface', cursive;
+  --font-body: 'Cormorant Garamond', 'Georgia', serif;
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --max-width: 1400px;
+}

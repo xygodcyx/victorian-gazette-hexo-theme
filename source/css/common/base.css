@@ -1,0 +1,47 @@
+/* ==========================================
+   维多利亚号外 · 全局重置与基础样式
+   ========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e8dfcc;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 40px,
+      rgba(139, 119, 90, 0.06) 40px,
+      rgba(139, 119, 90, 0.06) 41px
+    ),
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(191, 155, 78, 0.15) 0%,
+      transparent 70%
+    );
+  border-width: 16px;
+  border-radius: 8px;
+  border-image-slice: 130 130 130 130 fill;
+  border-image-repeat: round;
+  border-image-outset: 0;
+
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  font-size: 18px;
+  line-height: 1.7;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+img {
+  filter: sepia(0.3) contrast(0.95) brightness(0.95);
+  transition: filter var(--transition-smooth);
+}
+
+img:hover {
+  filter: sepia(0) contrast(1) brightness(1);
+}

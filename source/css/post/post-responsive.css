@@ -1,0 +1,118 @@
+/* ==========================================
+   文章页 · 响应式样式
+   ========================================== */
+
+/* 平板端 */
+@media (max-width: 1024px) {
+  .article-layout {
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
+  }
+
+  .article-margin-right {
+    display: none;
+  }
+
+  .article-main {
+    padding: 1.5rem 2rem;
+  }
+}
+
+/* 手机端 */
+@media (max-width: 768px) {
+  .article-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .article-margin-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 0;
+  }
+
+  .margin-widget {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .article-main {
+    padding: 1rem 1.5rem;
+  }
+
+  .article-image-right {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* 表格转卡片 */
+  .article-body table:not(figure.highlight table) {
+    display: block;
+    border: none;
+    box-shadow: none;
+  }
+
+  .article-body thead:not(figure.highlight thead) {
+    display: none;
+  }
+
+  .article-body tbody:not(figure.highlight tbody),
+  .article-body tbody tr:not(figure.highlight tr),
+  .article-body tbody td:not(figure.highlight td) {
+    display: block;
+    width: 100%;
+  }
+
+  .article-body tbody tr:not(figure.highlight tr) {
+    margin-bottom: 1em;
+    border: 1px solid var(--border-ornate);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .article-body tbody td:not(figure.highlight td) {
+    padding: 0.5em 1em;
+    border-bottom: 1px dotted rgba(196, 173, 124, 0.3);
+  }
+
+  .article-body
+    tbody
+    td:last-child:not(figure.highlight td) {
+    border-bottom: none;
+    text-align: left;
+  }
+
+  .article-body tbody td:not(figure.highlight td)::before {
+    content: attr(data-label);
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-gold);
+    margin-bottom: 0.2em;
+  }
+}
+
+/* 小屏手机 */
+@media (max-width: 480px) {
+  .article-body ul li,
+  .article-body ol li {
+    gap: 0.4em;
+  }
+
+  .article-main {
+    padding: 0.8rem 1rem;
+  }
+
+  .article-body blockquote {
+    margin: 1em;
+    padding: 0.8em;
+  }
+}

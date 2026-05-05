@@ -1,4 +1,4 @@
-<article class="story-card">
+<article class="story-card" id="post-<%= post.title %>">
     <h2 class="story-card-title">
         <a href="<%= url_for(post.path) %>"><%= post.title %></a>
     </h2>
@@ -31,7 +31,7 @@
         
     </div>
     <p class="story-card-excerpt">
-        <%- post.excerpt || post.content.slice(0,60) %>
+        <%- post.excerpt || safe_truncate(post.content , { length:200 }) %>
     </p>
     <a href="<%= url_for(post.path) %>" class="card-read-more">继续阅读 →</a>
 </article>
