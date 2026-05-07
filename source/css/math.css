@@ -2,26 +2,158 @@
    维多利亚号外 · 数学公式样式
    ========================================== */
 
-/* KaTeX 公式容器 */
+/* 块级公式容器装饰 */
 .katex-display {
+  display: block;
   margin: 1.5em 0;
-  padding: 1em;
+  padding: 1em 0.5em;
   background: var(--bg-card);
   border: 1px solid var(--border-ornate);
   border-left: 3px solid var(--accent-gold);
   overflow-x: auto;
+  overflow-y: visible;
+  text-align: center;
 }
 
 .katex-display > .katex {
   font-size: 1.1rem;
 }
 
-/* 行内公式 */
+/* 行内公式微调 */
 .katex {
   font-size: 1.05em;
 }
 
-/* MathJax 容器 */
-mjx-container {
-  margin: 1em 0;
+/* ==========================================
+   隔离 KaTeX 内部表格，防止被维多利亚表格样式污染
+   ========================================== */
+.article-body .katex table,
+.article-body .katex-display table {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  table-layout: auto !important;
+}
+
+.article-body .katex thead,
+.article-body .katex tbody,
+.article-body .katex tfoot,
+.article-body .katex tr,
+.article-body .katex td,
+.article-body .katex th {
+  display: table; /* 让 tr/td 恢复默认，但不影响 KaTeX 自己的 display 设定 */
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: normal !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  vertical-align: baseline !important;
+  line-height: normal !important;
+  white-space: normal !important;
+  box-shadow: none !important;
+}
+
+/* 矩阵单元格需要的 padding */
+.article-body .katex .mtd {
+  padding: 0 0.3em !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+/* 确保 KaTeX 内的所有元素不受列表 flex 等样式影响 */
+.article-body .katex * {
+  display: inline;
+  position: static !important;
+  float: none !important;
+  clear: none !important;
+  flex: none !important;
+  width: auto !important;
+  height: auto !important;
+  text-indent: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: normal !important;
+  text-align: left !important;
+  vertical-align: baseline !important;
+  white-space: normal;
+}
+
+/* 恢复 KaTeX 必需的 display 和定位 */
+.article-body .katex .katex-html {
+  display: inline-block !important;
+  white-space: nowrap;
+}
+
+.article-body .katex .mfrac .frac-line {
+  display: block !important;
+  width: 100% !important;
+  border-bottom: 1px solid !important;
+}
+
+.article-body .katex .vlist {
+  display: inline-block !important;
+  position: relative !important;
+}
+
+.article-body .katex .vlist-t2 {
+  display: inline-table !important;
+}
+
+.article-body .katex .msupsub {
+  position: relative !important;
+}
+
+.article-body .katex .mtable {
+  display: inline-table !important;
+}
+
+.article-body .katex .mtr {
+  display: table-row !important;
+}
+
+.article-body .katex .mtd {
+  display: table-cell !important;
+}
+
+.article-body .katex .stretchy {
+  display: inline-block !important;
+  position: relative !important;
+}
+
+.article-body .katex .sqrt {
+  display: inline-block !important;
+  position: relative !important;
+}
+
+/* 去掉伪元素干扰 */
+.katex::before,
+.katex::after,
+.katex *::before,
+.katex *::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 滚动条 */
+.katex-display::-webkit-scrollbar {
+  height: 4px;
+}
+.katex-display::-webkit-scrollbar-thumb {
+  background: var(--border-ornate);
+  border-radius: 2px;
 }

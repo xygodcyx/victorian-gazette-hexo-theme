@@ -5,34 +5,101 @@
 .pagination {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.3rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.35em;
   margin-top: 1.5rem;
   font-family: var(--font-display);
   max-width: 100%;
 }
 
-.pagination a,
-.pagination span {
+/* 前页/后页按钮 */
+.page-prev,
+.page-next {
   padding: 0.4em 0.8em;
   border: 1px solid var(--border-ornate);
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   transition: var(--transition-smooth);
   white-space: nowrap;
-  min-width: 2em;
-  text-align: center;
+  flex-shrink: 0;
 }
 
-.pagination a:hover {
+.page-prev {
+  border-radius: 2px 0 0 2px;
+}
+
+.page-next {
+  border-radius: 0 2px 2px 0;
+}
+
+.page-prev:hover,
+.page-next:hover {
   background: var(--accent-gold);
   color: #fff;
   border-color: var(--accent-gold);
 }
 
-.pagination .current {
+.page-prev.disabled,
+.page-next.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* 页码容器 */
+.page-numbers {
+  display: flex;
+  align-items: center;
+  flex-shrink: 1;
+  min-width: 0;
+  gap: 0.35em;
+}
+
+.page-numbers a,
+.page-current,
+.page-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2em;
+  height: 2.2em;
+  padding: 0 0.4em;
+  border: 1px solid var(--border-ornate);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: var(--transition-smooth);
+  white-space: nowrap;
+  /* border-left: none; */
+}
+
+.page-numbers a:first-child,
+.page-current:first-child,
+.page-ellipsis:first-child {
+  border-left: 1px solid var(--border-ornate);
+}
+
+.page-numbers a:hover {
+  background: var(--accent-gold);
+  color: #fff;
+  border-color: var(--accent-gold);
+}
+
+.page-current {
   background: var(--accent-darkred);
   color: #fff;
   border-color: var(--accent-darkred);
+  font-weight: bold;
+  cursor: default;
+}
+
+.page-ellipsis {
+  color: var(--text-secondary);
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: default;
+  border-color: transparent;
+  min-width: 1.5em;
 }

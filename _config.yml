@@ -1,12 +1,13 @@
 # Victorian Gazette Theme Config
 
 # 博客名称
-title: QUHOU
+title: Quhou
 subtitle: 写点想写的
 
 # 博主信息
 author: Quhou
 avatar: /images/editor-portrait.jpg
+icon: /images/editor-portrait.jpg
 
 # 导航菜单
 menu:

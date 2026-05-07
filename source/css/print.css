@@ -1,0 +1,398 @@
+/* ==========================================
+   维多利亚号外 · 打印样式
+   ========================================== */
+
+@media print {
+  /* 隐藏不需要的元素 */
+  .masthead,
+  .nav-section,
+  .sidebar,
+  .gazette-footer,
+  .comments-section,
+  .article-margin-left,
+  .article-margin-right,
+  .ornament-divider,
+  .article-nav,
+  .article-tags,
+  .article-reading-meta,
+  .reading-progress,
+  .immersive-exit-label,
+  .search-modal,
+  #search-modal,
+  .copy-btn,
+  nav,
+  footer,
+  .pagination {
+    display: none !important;
+  }
+
+  /* 重置背景和颜色 */
+  body {
+    background: #fff !important;
+    background-image: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 12pt !important;
+    color: #000 !important;
+  }
+
+  /* 报纸容器 */
+  .gazette {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0.5cm !important;
+    background: #fff !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* 文章布局全宽 */
+  .article-layout {
+    display: block !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .article-main {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background: #fff !important;
+    max-width: 100% !important;
+  }
+
+  /* 标题样式 */
+  .article-title {
+    font-size: 18pt !important;
+    text-align: center !important;
+    margin-bottom: 0.3cm !important;
+    color: #000 !important;
+    border-bottom: 1px solid #000 !important;
+    padding-bottom: 0.2cm !important;
+  }
+
+  .article-subtitle {
+    font-size: 11pt !important;
+    text-align: center !important;
+    font-style: italic !important;
+    color: #333 !important;
+    margin-bottom: 0.5cm !important;
+  }
+
+  .article-chapter {
+    font-size: 9pt !important;
+    text-align: center !important;
+    color: #666 !important;
+  }
+
+  /* 正文排版——单栏，充分利用宽度 */
+  .article-body {
+    font-size: 11pt !important;
+    line-height: 1.6 !important;
+    column-count: 1;
+    text-align: justify !important;
+    max-width: 100% !important;
+  }
+
+  .article-body p {
+    margin-bottom: 0.3cm !important;
+    text-indent: 0 !important;
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* 标题打印样式 */
+  .article-body h2 {
+    font-size: 14pt !important;
+    margin-top: 0.5cm !important;
+    margin-bottom: 0.2cm !important;
+    border-bottom: 1px solid #999 !important;
+    padding-bottom: 0.1cm !important;
+    color: #000 !important;
+  }
+
+  .article-body h3 {
+    font-size: 12pt !important;
+    margin-top: 0.4cm !important;
+    margin-bottom: 0.1cm !important;
+    color: #000 !important;
+  }
+
+  /* 链接（修复选择器） */
+  .article-body a,
+  .article-main a,
+  article a {
+    color: #000 !important;
+    text-decoration: underline !important;
+    border-bottom: none !important;
+  }
+
+  .article-body a[href^='http']::after,
+  .article-main a[href^='http']::after,
+  article a[href^='http']::after {
+    content: ' (' attr(href) ')' !important;
+    font-size: 8pt !important;
+    color: #666 !important;
+    word-break: break-all !important;
+  }
+
+  /* 图片 */
+  .article-body img {
+    max-width: 100% !important;
+    filter: none !important;
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+  }
+
+  .article-image-right {
+    float: right !important;
+    width: 40% !important;
+    max-width: 5cm !important;
+    margin: 0 0 0.3cm 0.3cm !important;
+  }
+
+  .article-image-full {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 代码块 */
+  .article-body pre,
+  .article-body figure.highlight {
+    background: #f9f9f9 !important;
+    border: 1px solid #ccc !important;
+    font-size: 9pt !important;
+    line-height: 1.3 !important;
+    page-break-inside: avoid;
+  }
+
+  .article-body code {
+    font-size: 9pt !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    color: #000 !important;
+  }
+
+  /* 引用块 */
+  .article-body blockquote {
+    border-left: 2px solid #999 !important;
+    background: none !important;
+    margin: 0.3cm 0 !important;
+    padding: 0 0.5cm !important;
+    font-style: italic !important;
+  }
+
+  /* 表格 */
+  .article-body table {
+    font-size: 9pt !important;
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  .article-body th,
+  .article-body td {
+    border: 1px solid #999 !important;
+    padding: 0.1cm 0.2cm !important;
+  }
+
+  .article-body thead {
+    background: #eee !important;
+  }
+
+  /* 折叠块全部展开 */
+  .article-body details > *:not(summary) {
+    display: block !important;
+  }
+
+  /* ========== 旁注/旁批/脚注 打印样式 ========== */
+
+  /* 段落旁注容器重置 */
+  .paranote-paragraph {
+    position: static !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+  }
+
+  .paranote-paragraph::before {
+    display: none !important;
+  }
+
+  .paranote-paragraph:hover {
+    border: none !important;
+  }
+
+  /* 旁注标记——转为块级编者注 */
+  .paranote-marker,
+  .paranote-marker-left {
+    position: static !important;
+    display: block !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin: 0.3cm 0 !important;
+    padding: 0.15cm 0.4cm !important;
+    border: none !important;
+    border-left: 3px solid #999 !important;
+    background: #f9f9f9 !important;
+    font-family: 'Times New Roman', serif !important;
+    font-size: 9pt !important;
+    font-style: italic !important;
+    color: #444 !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  .paranote-marker::before,
+  .paranote-marker::after,
+  .paranote-marker-left::before,
+  .paranote-marker-left::after {
+    display: none !important;
+  }
+
+  /* 三种变体颜色统一为灰色 */
+  .paranote-summary .paranote-marker,
+  .paranote-citation .paranote-marker,
+  .paranote-editorial .paranote-marker {
+    border-left-color: #999 !important;
+    color: #444 !important;
+  }
+
+  /* 词语旁批 */
+  .marginalia-container {
+    position: static !important;
+  }
+
+  .marginalia-note {
+    display: inline !important;
+    position: static !important;
+    opacity: 1 !important;
+    font-size: 9pt !important;
+    color: #666 !important;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: auto !important;
+    pointer-events: auto !important;
+  }
+
+  .marginalia-note::before {
+    content: '【';
+  }
+
+  .marginalia-note::after {
+    content: '】';
+  }
+
+  .marginalia-note::before,
+  .marginalia-note::after {
+    display: inline !important;
+    border: none !important;
+    background: none !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  .marginalia-term {
+    border-bottom: none !important;
+    font-style: normal !important;
+    color: #000 !important;
+    cursor: default !important;
+  }
+
+  /* 脚注 */
+  .footnotes-separator {
+    border-top: 1px solid #999 !important;
+    margin: 0.5cm 0 0.3cm 0 !important;
+  }
+
+  .footnotes-separator::after {
+    content: '注释' !important;
+    font-size: 10pt !important;
+    color: #000 !important;
+  }
+
+  .footnotes-list {
+    padding-left: 0 !important;
+  }
+
+  .footnotes-list li {
+    font-size: 9pt !important;
+    break-inside: avoid;
+    padding: 0.1cm 0 !important;
+    margin-bottom: 0.15cm !important;
+    border-left: none !important;
+    background: none !important;
+    color: #444 !important;
+  }
+
+  .footnotes-list li::before {
+    font-weight: bold !important;
+  }
+
+  .footnote-ref {
+    font-size: 8pt !important;
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  .footnote-backref {
+    color: #666 !important;
+    text-decoration: none !important;
+  }
+
+  /* 首字下沉恢复 */
+  .drop-cap {
+    float: left !important;
+    font-size: 2em !important;
+    line-height: 1 !important;
+    padding-right: 0.1em !important;
+    color: #000 !important;
+  }
+
+  /* 列表 */
+  .article-body ul li::before,
+  .article-body ol li::before {
+    color: #000 !important;
+  }
+
+  /* 去除所有滤镜和阴影 */
+  * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    transition: none !important;
+    animation: none !important;
+    background-image: none !important;
+  }
+
+  /* 页眉页脚 */
+  @page {
+    margin: 1.5cm;
+  }
+
+  @page :left {
+    @top-left {
+      content: '维多利亚号外';
+      font-family: 'Times New Roman', serif;
+      font-size: 8pt;
+      color: #999;
+    }
+  }
+
+  @page :right {
+    @top-right {
+      content: counter(page);
+      font-size: 8pt;
+      color: #999;
+    }
+  }
+}

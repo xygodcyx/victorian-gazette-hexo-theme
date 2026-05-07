@@ -47,6 +47,9 @@
       <% if (page.subtitle || page.description) { %>
         <p class="article-subtitle"><%= page.subtitle || page.description %></p>
       <% } %>
+      <div class="article-reading-meta">
+        <span class="reading-time" id="reading-time">预计阅读 ... 分钟</span>
+      </div>
     </header>
 
     <div class="ornament-divider">
@@ -59,7 +62,7 @@
       </label>
     </div>
 
-    <div class="article-body">
+    <div class="article-body" data-url="<%= config.url + url_for(page.path) %>">
       <%- page.content %>
     </div>
 

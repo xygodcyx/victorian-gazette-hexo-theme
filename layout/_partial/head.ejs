@@ -4,12 +4,13 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   />
+  <link rel="shortcut icon" href="<%= config.icon || theme.icon %>" type="image/x-icon">
   <title>
-    <% if (is_home()) { %> <%= config.title %> · <%=
-    config.subtitle %> <% } else if (is_post()) { %> <%=
-    page.title %> · <%= config.title %> <% } else if
-    (is_archive()) { %> 归档 · <%= config.title %> <% } else
-    { %> <%= page.title %> · <%= config.title %> <% } %>
+    <% if (is_home()) { %> <%= theme.title || config.title %><%=
+   "'" + config.subtitle %> <% } else if (is_post()) { %> <%=
+    page.title %> · <%= theme.title || config.title %> <% } else if
+    (is_archive()) { %> 归档 · <%= theme.title || config.title %> <% } else
+    { %> <%= page.title %> · <%= theme.title || config.title %> <% } %>
   </title>
   <link
     rel="stylesheet"
@@ -30,6 +31,14 @@
   <link
     rel="stylesheet"
     href="<%- url_for('/css/highlight.css') %>"
+  />
+  <link
+    rel="stylesheet"
+    href="<%- url_for('/css/search.css') %>"
+  />
+  <link
+    rel="stylesheet"
+    href="<%- url_for('/css/print.css') %>"
   />
 
   <% if (theme.math && theme.math.enable) { %>

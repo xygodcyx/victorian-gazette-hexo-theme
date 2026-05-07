@@ -1,4 +1,11 @@
 <script src="<%- url_for('/js/index-toggle-featured.js') %>"></script>
+<script src="<%- url_for('/js/index-search.js') %>" type="module"></script>
 <script src="<%- url_for('/js/post-change-fontsize.js') %>"></script>
 <script src="<%- url_for('/js/post-copy-code.js') %>"></script>
 <script src="<%- url_for('/js/post-immersive.js') %>"></script>
+<script src="<%= url_for('/js/post-reading-progress.js') %>"></script>
+<% if (theme.math && theme.math.enable) { %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="<%- url_for('/js/math-katex.js') %>"></script>
+<% } %>

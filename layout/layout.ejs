@@ -2,65 +2,12 @@
 <html lang="<%= config.language || 'zh' %>">
   <%- partial('_partial/head') %>
   <body>
+    <%- partial('_partial/reading-progress.ejs') %>
     <div class="gazette">
       <%- partial('_partial/header') %> <%- body %> <%-
       partial('_partial/footer') %>
     </div>
-    <%- partial('_partial/scripts.ejs') %>
-
-
-    <% if (theme.math && theme.math.enable) { %>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script>
-  (function() {
-    var article = document.querySelector('body');
-    if (!article) return;
-
-    var html = article.innerHTML;
-
-    // 1. 块级公式 \[...\]
-    html = html.replace(/\\\[([\s\S]*?)\\\]/g, function(match, formula) {
-      try {
-        var cleanFormula = formula.replace(/<br\s*\/?>/gi, '\n').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-        return katex.renderToString(cleanFormula.trim(), { displayMode: true, throwOnError: false });
-      } catch(e) {
-        return match;
-      }
-    });
-
-    // 2. 块级公式 $$...$$
-    html = html.replace(/\$\$([\s\S]*?)\$\$/g, function(match, formula) {
-      try {
-        var cleanFormula = formula.replace(/<br\s*\/?>/gi, '\n').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-        return katex.renderToString(cleanFormula.trim(), { displayMode: true, throwOnError: false });
-      } catch(e) {
-        return match;
-      }
-    });
-
-    // 3. 行内公式 \(...\)
-    html = html.replace(/\\\(([\s\S]*?)\\\)/g, function(match, formula) {
-      try {
-        var cleanFormula = formula.replace(/<br\s*\/?>/gi, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-        return katex.renderToString(cleanFormula.trim(), { displayMode: false, throwOnError: false });
-      } catch(e) {
-        return match;
-      }
-    });
-
-    // 4. 行内公式 $...$（最后处理，避免与 $$ 冲突）
-    html = html.replace(/\$([^\$]+?)\$/g, function(match, formula) {
-      try {
-        var cleanFormula = formula.replace(/<br\s*\/?>/gi, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-        return katex.renderToString(cleanFormula.trim(), { displayMode: false, throwOnError: false });
-      } catch(e) {
-        return match;
-      }
-    });
-
-    article.innerHTML = html;
-  })();
-</script>
-<% } %>
+    <%- partial('_partial/search-module.ejs') %> <%-
+    partial('_partial/scripts.ejs') %>
   </body>
 </html>
