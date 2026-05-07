@@ -4,5 +4,19 @@
     <span class="gold-text"><%= config.title %></span>
     · Powered by Hexo &amp; 维多利亚号外主题
   </p>
-  <!-- <p>所有文章均在烛光下手工排版 · 适配一切现代设备</p> -->
+  
+  <% if (config.beian) { %>
+    <p>
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener"><%= config.beian %></a>
+    </p>
+  <% } %>
+    <% if (config.gongan) { %>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 0.3em; margin-top: 0.3em;">
+      <img style="width: 16px; height: 16px;" src="/images/备案图标.png" alt="" />
+      <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36110202000708" rel="noreferrer" target="_blank">
+        <%= config.gongan %>
+      </a>
+    </div>
+  <% } %>
+  
 </footer>
