@@ -3,6 +3,18 @@
    ========================================== */
 
 /* 侧边栏内容区域的链接 */
+* a {
+  color: var(--accent-darkred);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-gold);
+  transition: var(--transition-smooth);
+}
+
+* a:hover {
+  color: var(--accent-red);
+  border-bottom-style: solid;
+}
+
 .widget-text a {
   color: var(--accent-darkred);
   text-decoration: none;
