@@ -28,3 +28,8 @@
 .gazette::before {
   display: none;
 }
+
+.featured-story img {
+  max-width: 100%;
+  width: 50%;
+}
